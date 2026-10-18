@@ -1,11 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class PropertyStore : MonoBehaviour {
 
     private Dictionary<Property, PropertyValue> properties;
+
+    void Awake() {
+        properties = new Dictionary<Property, PropertyValue>();
+    }
 
     public void UpdateProperty(Property property, PropertyValue value) {
         properties[property] = value;
@@ -39,7 +44,9 @@ public class PropertyStore : MonoBehaviour {
         properties.Add(property, new PropertyValue());
         switch (property.propertyType) {
             case PropertyType.Number:
+                Debug.Log($"{property.name}: {property.minValue} - {property.maxValue}");
                 float value = Random.Range(property.minValue, property.maxValue);
+                Debug.Log($"{property.name}: {value}");
                 properties[property] = PropertyValue.Create(value);
                 break;
             case PropertyType.String:
@@ -51,6 +58,25 @@ public class PropertyStore : MonoBehaviour {
                 properties[property] = PropertyValue.Create(random == 1);
                 break;
         }
+    }
+
+    public void PrintAllProperties() {
+        string str = $"Properties on object {gameObject.name}:\n";
+        foreach (var property in properties) {
+            str += $"{property.Key.name} - ";
+            switch (property.Key.propertyType) {
+                case PropertyType.Number:
+                    str += $"{property.Value.NumberValue}\n";
+                    break;
+                case PropertyType.Bool:
+                    str += $"{property.Value.BoolValue}\n";
+                    break;
+                case PropertyType.String:
+                    str += $"{property.Key.validStrings[(int)property.Value.NumberValue]}";
+                    break;
+            }
+        }
+        Debug.Log(str);
     }
 
 }
