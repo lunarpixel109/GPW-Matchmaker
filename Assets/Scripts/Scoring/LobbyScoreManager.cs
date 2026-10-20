@@ -90,16 +90,18 @@ namespace Scoring {
 
         public float GetOverallScore(List<ScoreCondition> conditions) {
             float overallScore = 0;
+            float maxScore = 0;
             for (int i = 0; i < playerProperties.Count() - 1; ++i) {
                 if (i > 0) {
                     overallScore += ScoreMatch(playerProperties[i], playerProperties[i - 1], conditions);
                 }
                 overallScore += ScoreMatch(playerProperties[i], playerProperties[i + 1], conditions);
+                maxScore += 2;
             }
             Debug.Log(overallScore);
             
             
-            return overallScore;
+            return overallScore / maxScore;
 
         }
 
