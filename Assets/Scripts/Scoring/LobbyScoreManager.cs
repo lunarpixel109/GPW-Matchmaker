@@ -24,14 +24,11 @@ namespace Scoring {
 
     }
 
-    public class ScoreManager : MonoBehaviour {
+    public class LobbyScoreManager : MonoBehaviour {
 
-        [SerializeField] private List<ScoreCondition> scoreConditions;
+
 
         private List<PropertyStore> playerProperties;
-
-        public List<FinalScoreLevel> scoreLevels;
-        
 
 
         public bool isScoring = false;
@@ -39,20 +36,13 @@ namespace Scoring {
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start() {
-            playerProperties = FindObjectsByType<PropertyStore>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).ToList();
-            scoreLevels = scoreLevels.OrderBy(x => x.lowerBound).ToList();
+            playerProperties = GetComponentsInChildren<PropertyStore>().ToList();
+
 
             
         }
 
-        void Update() {
-            if (isScoring) {
-                GetPlayerCountChange();
-                isScoring = false;
-            }
-        }
-
-        float ScoreMatch(PropertyStore a, PropertyStore b) {
+        float ScoreMatch(PropertyStore a, PropertyStore b, List<ScoreCondition> scoreConditions) {
 
             List<ScoreLevel> scoreLevels = new List<ScoreLevel>();
             int maxScore = 0;
@@ -98,13 +88,13 @@ namespace Scoring {
 
 
 
-        public float GetOverallScore() {
+        public float GetOverallScore(List<ScoreCondition> conditions) {
             float overallScore = 0;
             for (int i = 0; i < playerProperties.Count() - 1; ++i) {
                 if (i > 0) {
-                    overallScore += ScoreMatch(playerProperties[i], playerProperties[i - 1]);
+                    overallScore += ScoreMatch(playerProperties[i], playerProperties[i - 1], conditions);
                 }
-                overallScore += ScoreMatch(playerProperties[i], playerProperties[i + 1]);
+                overallScore += ScoreMatch(playerProperties[i], playerProperties[i + 1], conditions);
             }
             Debug.Log(overallScore);
             
@@ -113,17 +103,17 @@ namespace Scoring {
 
         }
 
-        public int GetPlayerCountChange() {
-            float score = GetOverallScore();
+        public int GetPlayerCountChange(List<ScoreCondition> conditions, List<FinalScoreLevel> finalScoreLevels) {
+            float score = GetOverallScore(conditions);
             int playerCountChange = 0;
 
-            for (int i = 0; i <= scoreLevels.Count - 2; ++i) {
-                if (score >= scoreLevels[i].lowerBound && score < scoreLevels[i+1].lowerBound) {
-                    playerCountChange = scoreLevels[i].valueChange;
+            for (int i = 0; i <= finalScoreLevels.Count - 2; ++i) {
+                if (score >= finalScoreLevels[i].lowerBound && score < finalScoreLevels[i+1].lowerBound) {
+                    playerCountChange = finalScoreLevels[i].valueChange;
                     break;
-                } else if (i == scoreLevels.Count - 2) {
-                    if (score >= scoreLevels[i + 1].lowerBound) {
-                        playerCountChange = scoreLevels[i + 1].valueChange;
+                } else if (i == finalScoreLevels.Count - 2) {
+                    if (score >= finalScoreLevels[i + 1].lowerBound) {
+                        playerCountChange = finalScoreLevels[i + 1].valueChange;
                     }
                 }
             }
