@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PropertyManager : MonoBehaviour {
 
-    [SerializeField] private List<Property> properties;
+    [SerializeField]
+    public List<Property> properties;
 
     // ONLY USED FOR DEBUG
     public void Start() {
-        GeneratePlayerData();
+        //GeneratePlayerData();
 
         PropertyStore[] propertyStores = FindObjectsByType<PropertyStore>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         foreach (var store in propertyStores) {

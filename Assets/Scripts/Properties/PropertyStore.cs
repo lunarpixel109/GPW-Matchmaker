@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 
 public class PropertyStore : MonoBehaviour {
 
-    private Dictionary<Property, PropertyValue> properties;
+    [Serialize]
+    private Dictionary<Property, PropertyValue> properties ;
 
     void Awake() {
         properties = new Dictionary<Property, PropertyValue>();
