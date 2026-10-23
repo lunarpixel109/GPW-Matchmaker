@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using static UnityEditor.EditorGUI;
 using static UnityEngine.Audio.GeneratorInstance;
 using Random = UnityEngine.Random;
+using Unity.VisualScripting;
 
 public class PlayerGenerator : MonoBehaviour
 {
     private float timer = 0f;
 	[SerializeField]
-	private int timerMax;
+	private float timerMax;
 
 	[SerializeField]
 	private GameObject playerPrefab;
@@ -18,14 +19,27 @@ public class PlayerGenerator : MonoBehaviour
 	[SerializeField]
 	private GameObject[] Lobbies;
 
+	[SerializeField] private List<int> indexes;
 
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
 		timer = timerMax;
-		//properties = ;
-	}
+
+		indexes = new List<int>();
+        foreach (Property property in this.gameObject.GetComponent<PropertyManager>().properties)
+        {
+			if (property.propertyType == PropertyType.Number)
+			{
+                indexes.Add(Random.Range(0, property.bag.numberValues.Count));
+            }
+			else if (property.propertyType == PropertyType.String)
+			{
+                indexes.Add(Random.Range(0, property.bag.stringValues.Count));
+            }
+        }
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -36,7 +50,6 @@ public class PlayerGenerator : MonoBehaviour
 
 			GeneratePlayer();
 		}
-
 
 		timer -= Time.deltaTime;
 	}
@@ -53,6 +66,15 @@ public class PlayerGenerator : MonoBehaviour
         }
 
 		newPlayer.transform.parent = Queue.transform;
+
+        string PlayerName = "";
+        for (int i = 0; i < 5; i++)
+        {
+        	PlayerName += (char)UnityEngine.Random.Range(65, 90);
+        }
+
+
+        newPlayer.name = PlayerName;
 
 		newPlayer.GetComponent<PropertyStore>().PrintAllProperties();
     }
