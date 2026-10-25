@@ -71,6 +71,7 @@ public class DragManager : MonoBehaviour
         else
         {
             proxy3D = Instantiate(data.prefab3D);
+            // proxy3D.transform.rotation = new Quaternion(0, -90, 0, 0);
 
             var roomItem = proxy3D.GetComponent<RoomItem>();
             if (roomItem == null) roomItem = proxy3D.AddComponent<RoomItem>();
@@ -91,16 +92,16 @@ public class DragManager : MonoBehaviour
         Vector2 mousePos = Mouse.current.position.ReadValue();
         bool mouseIn3D = room.Contains(mousePos);
 
-        // ---- 2D ghost: keeps chasing the cursor even while hidden over the room window
+        //2D-icon keeps following mouse but disabled to allow for seamless 
         Follow(ghostMotion, mousePos, dt, false);
         ghost2DPlayer.transform.position = ghostMotion.Position;
         ApplyGhostLook(dt);
         ghost2DPlayer.gameObject.SetActive(!mouseIn3D);
 
-        // ---- Drop target hover feedback follows the cursor, not the laggy ghost
+        //hover follows mouse not prefab since it's designed to lag behind
         SetHover(mouseIn3D ? null : FindTarget(mousePos));
 
-        // ---- 3D proxy
+        //3D proxy
         Vector3 pt = default;
         bool onFloor = mouseIn3D && room.TryGetFloorPoint(mousePos, out pt);
         proxy3D.SetActive(onFloor);
@@ -124,7 +125,7 @@ public class DragManager : MonoBehaviour
     {
         SetHover(null);
 
-        // Loose/slotted icons should start from their normal scale and rotation
+        //Loose/slotted icons should start from their normal scale and rotation
         ghost2DPlayer.transform.localScale = ghostBaseScale;
         ghost2DPlayer.transform.localRotation = Quaternion.identity;
 
@@ -136,7 +137,7 @@ public class DragManager : MonoBehaviour
         }
         else if (inside)
         {
-            // Released over the window but not on the floor: cancel
+            //Released over the window but not on the floor == cancel
             if (source3D != null)
             {
                 proxy3D.SetActive(true);
@@ -148,7 +149,7 @@ public class DragManager : MonoBehaviour
         }
         else
         {
-            // Dropped outside the window: becomes a 2D icon, handed to a drop target if one is under the cursor
+            //player is dropped outside the window == becomes a 2D icon, handed to a drop target if one is under the cursor
             Destroy(proxy3D);
             ghost2DPlayer.gameObject.SetActive(true);
             ghost2DPlayer.raycastTarget = true;
@@ -231,8 +232,6 @@ public class DragManager : MonoBehaviour
         hoverTarget = t;
         hoverTarget?.HoverEnter(heldPlayer);
     }
-
-    // ---------- unchanged from your version ----------
 
     void SetLayerRecursive(GameObject go, int layer)
     {
