@@ -10,7 +10,12 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3f575b8-956c-45ce-9a67-9aed2438d398" name="Changes" comment="" />
+    <list default="true" id="a3f575b8-956c-45ce-9a67-9aed2438d398" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GPW-Matchmaker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GPW-Matchmaker/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/draggingScenes.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/draggingScenes.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DraggingSystem/DragManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DraggingSystem/DragManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DraggingSystem/Prefabs/Player3D.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DraggingSystem/Prefabs/Player3D.prefab" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,13 +24,91 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ImJammieTbh"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/lunarpixel109/GPW-Matchmaker.git",
+    "accountId": "34b55d4d-cb88-4ccc-9c89-595f3e594ef8"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scoring/OverallScoreManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2,
-  "fromUser": false
-}]]></component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0000000086177736" />
+      <entry key="M2" value="1.0001607806840174" />
+      <entry key="M5" value="1.0587165449750986" />
+      <entry key="M10" value="1.4197009067235844" />
+      <entry key="M15" value="1.8084753976698895" />
+      <entry key="M30" value="2.5573776019396526" />
+      <entry key="H1" value="3.161511561162085" />
+      <entry key="H2" value="3.5464749131652096" />
+      <entry key="H4" value="3.7639509186240927" />
+      <entry key="D1" value="3.9593029914638707" />
+      <entry key="W1" value="3.994152054016328" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="3.629558076733221E-254" />
+      <entry key="S5" value="4.721550929957054E-102" />
+      <entry key="S10" value="3.059847753748388E-51" />
+      <entry key="S30" value="2.8598485226610273E-17" />
+      <entry key="S60" value="9.201103218672888E-9" />
+      <entry key="M2" value="1.6587273711668658E-4" />
+      <entry key="M5" value="0.05943142180242773" />
+      <entry key="M10" value="0.4222222900176877" />
+      <entry key="M15" value="0.811699148074656" />
+      <entry key="M30" value="1.560468935219957" />
+      <entry key="H1" value="2.1636521007870875" />
+      <entry key="H2" value="2.5477344099190016" />
+      <entry key="H4" value="2.76463407316486" />
+      <entry key="D1" value="2.9594248420534806" />
+      <entry key="W1" value="2.9941696648481075" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.007188966020506835" />
+      <entry key="MS500" value="0.3726775966997301" />
+      <entry key="S2" value="0.7813278801723174" />
+      <entry key="S5" value="0.9060107039344742" />
+      <entry key="S10" value="0.9518459454840758" />
+      <entry key="S30" value="0.9836838806121433" />
+      <entry key="S60" value="0.9918084062091169" />
+      <entry key="M2" value="0.9962164787720046" />
+      <entry key="M5" value="1.1156612288300234" />
+      <entry key="M10" value="1.8381177320894877" />
+      <entry key="M15" value="2.6158077622490064" />
+      <entry key="M30" value="4.113906542834205" />
+      <entry key="H1" value="5.322486791055951" />
+      <entry key="H2" value="6.092645940800158" />
+      <entry key="H4" value="6.527739799809834" />
+      <entry key="D1" value="6.918577464924367" />
+      <entry key="W1" value="6.988299995499339" />
+    </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3Kug1UCQc4ctEYAsEAw0vuWDVSj" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -34,6 +117,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -41,7 +125,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "3D-to-2D-Dragging",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -52,7 +136,7 @@
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.3.21f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.21f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -62,7 +146,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.3.21f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\6000.3.21f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -108,6 +192,17 @@
     <option name="unityProjectFolder" value="true" />
   </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
