@@ -28,19 +28,18 @@ namespace Scoring {
 
 
 
-        private List<PropertyStore> playerProperties;
+        private List<PuzzleSlot> playerProperties;
 
 
         public bool isScoring = false;
-
+        
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start() {
-            playerProperties = GetComponentsInChildren<PropertyStore>().ToList();
-
-
+            playerProperties = GetComponentsInChildren<PuzzleSlot>().ToList();
             
         }
+
 
         float ScoreMatch(PropertyStore a, PropertyStore b, List<ScoreCondition> scoreConditions) {
 
@@ -93,12 +92,12 @@ namespace Scoring {
             float maxScore = 0;
             for (int i = 0; i < playerProperties.Count() - 1; ++i) {
                 if (i > 0) {
-                    overallScore += ScoreMatch(playerProperties[i], playerProperties[i - 1], conditions);
+                    overallScore += ScoreMatch(playerProperties[i].occupant.data.propertyStore, playerProperties[i - 1].occupant.data.propertyStore, conditions);
                 }
-                overallScore += ScoreMatch(playerProperties[i], playerProperties[i + 1], conditions);
+                overallScore += ScoreMatch(playerProperties[i].occupant.data.propertyStore, playerProperties[i + 1].occupant.data.propertyStore, conditions);
                 maxScore += 2;
             }
-            Debug.Log(overallScore);
+            Debug.Log(overallScore / maxScore);
             
             
             return overallScore / maxScore;

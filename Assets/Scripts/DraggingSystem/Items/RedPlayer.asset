@@ -17,3 +17,4 @@ MonoBehaviour:
   colour: {r: 1, g: 0.029372733, b: 0, a: 1}
   displayName: Red Guy
   feel: {fileID: 0}
+  propertyStore: {fileID: 11400000, guid: 82d957762e227b2119bf11422c90ec52, type: 2}

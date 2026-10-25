@@ -15,5 +15,6 @@ MonoBehaviour:
   prefab3D: {fileID: 8623792663999120262, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
   icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   colour: {r: 0, g: 0.1510973, b: 1, a: 1}
-  displayName: Blue Guy
+  displayName: Blue Guy 1
   feel: {fileID: 11400000, guid: 42e87f8b98a5241f6abe113bbfcfcc16, type: 2}
+  propertyStore: {fileID: 11400000, guid: 4358ea877785152a3966141d7d215102, type: 2}

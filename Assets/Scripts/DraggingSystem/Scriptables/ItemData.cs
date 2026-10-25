@@ -11,5 +11,8 @@ namespace Scriptables {
         public string displayName = "Player";
         
         public DragFeel feel;
+
+        [Space]
+        public PropertyStore propertyStore;
     }
 }
