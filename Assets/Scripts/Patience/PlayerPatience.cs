@@ -5,6 +5,7 @@ public class PlayerPatience : MonoBehaviour
     public float maxPatience;
     public float currentPatience;
     public bool isWaiting = true;
+    public PlayerLeftNotification playerLeftNotification;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +30,23 @@ public class PlayerPatience : MonoBehaviour
     void LeaveMatchmaking()
     {
         isWaiting = false;
+
+        if (playerLeftNotification != null)
+        {
+            playerLeftNotification.ShowNotification();
+        }
+
+        PatienceVisuals visuals = GetComponent<PatienceVisuals>();
+
+        if (visuals != null)
+        {
+            visuals.PlayLeaveEffect();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         Debug.Log("Player has left matchmaking!");
     }
 }
