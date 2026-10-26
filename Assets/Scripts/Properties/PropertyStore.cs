@@ -56,9 +56,11 @@ public class PropertyStore : MonoBehaviour {
 				properties[property] = PropertyValue.Create(value);
 				break;
 			case PropertyType.String:
-				//int stringVal = Random.Range(0, property.validStrings.Count);
-				int stringVal = Random.Range(0, property.validStrings.Count);
-				properties[property] = PropertyValue.Create(property, property.validStrings[stringVal]);
+				int strValue;
+				int.TryParse(property.bag.stringValues[property.index], out strValue);
+				property.IncrementIndex();
+	
+				properties[property] = PropertyValue.Create(property, property.validStrings[strValue]);
 				break;
 			case PropertyType.Bool:
 				int random = Random.Range(0, 1);
