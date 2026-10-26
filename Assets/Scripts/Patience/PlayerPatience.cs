@@ -5,7 +5,8 @@ public class PlayerPatience : MonoBehaviour
     public float maxPatience;
     public float currentPatience;
     public bool isWaiting = true;
-    public PlayerLeftNotification playerLeftNotification;
+    public PlayerLeftNotification notificationPrefab;
+    public Canvas notificationCanvas;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,9 +32,27 @@ public class PlayerPatience : MonoBehaviour
     {
         isWaiting = false;
 
-        if (playerLeftNotification != null)
+        if (notificationPrefab != null && notificationCanvas != null)
         {
-            playerLeftNotification.ShowNotification();
+            Vector3 worldPosition = transform.position + Vector3.up * 2f;
+
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
+
+            if (screenPosition.z > 0f)
+            {
+                PlayerLeftNotification notification = Instantiate(notificationPrefab, notificationCanvas.transform);
+
+                RectTransform canvasRect = notificationCanvas.GetComponent<RectTransform>();
+
+                RectTransform notificationRect = notification.GetComponent<RectTransform>();
+
+                Camera uiCamera = notificationCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : notificationCanvas.worldCamera;
+
+                RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPosition, uiCamera, out Vector2 localPosition);
+
+                notificationRect.anchoredPosition = localPosition + new Vector2(0f, -35f);
+                notification.ShowNotification();
+            }
         }
 
         PatienceVisuals visuals = GetComponent<PatienceVisuals>();

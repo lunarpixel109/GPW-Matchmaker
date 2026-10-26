@@ -7,7 +7,6 @@ public class PlayerLeftNotification : MonoBehaviour
     public float displayDuration = 2f;
 
     private TMP_Text notificationText;
-    private Coroutine hideCoroutine;
 
     void Awake()
     {
@@ -19,19 +18,13 @@ public class PlayerLeftNotification : MonoBehaviour
     {
         notificationText.enabled = true;
 
-        if (hideCoroutine != null)
-        {
-            StopCoroutine(hideCoroutine);
-        }
-
-        hideCoroutine = StartCoroutine(HideNotification());
+        StartCoroutine(HideNotification());
     }
 
     IEnumerator HideNotification()
     {
         yield return new WaitForSeconds(displayDuration);
 
-        notificationText.enabled = false;
-        hideCoroutine = null;
+        Destroy(gameObject);
     }
 }

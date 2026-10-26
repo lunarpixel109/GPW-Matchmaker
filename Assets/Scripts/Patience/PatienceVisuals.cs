@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using Microsoft.Win32.SafeHandles;
+using TMPro;
 
 public class PatienceVisuals : MonoBehaviour
 {
@@ -11,6 +11,7 @@ public class PatienceVisuals : MonoBehaviour
     private Vector3 startPosition;
     public Material characterMaterial;
     private Color originalColour;
+    public TMP_Text warningText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,6 +20,11 @@ public class PatienceVisuals : MonoBehaviour
 
         characterMaterial = characterRenderer.material;
         originalColour = characterMaterial.color;
+
+        if (warningText != null)
+        {
+            warningText.gameObject.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -32,19 +38,51 @@ public class PatienceVisuals : MonoBehaviour
 
         float patiencePercent = patience.currentPatience / patience.maxPatience;
 
+
+        if (warningText != null)
+        {
+            if (patiencePercent <= 0.2f)
+            {
+                // Critical warning: red
+                warningText.gameObject.SetActive(true);
+
+                warningText.color = Color.red;
+                warningText.alpha = 1f;
+
+                float pulse = 1f + Mathf.Sin(Time.time * 6f) * 0.1f;
+                warningText.transform.localScale =
+                    Vector3.one * 0.2f * pulse;
+            }
+            else if (patiencePercent <= 0.45f)
+            {
+                // Early warning: amber
+                warningText.gameObject.SetActive(true);
+
+                warningText.color = new Color(1f, 0.65f, 0f, 1f);
+                warningText.alpha = 1f;
+
+                warningText.transform.localScale = Vector3.one * 0.2f;
+            }
+            else
+            {
+                warningText.gameObject.SetActive(false);
+            }
+        }
+
+
         float shakeAmount = 0f;
         float shakeSpeed = 0f;
 
-        if (patiencePercent <= 0.6f)
+        if (patiencePercent <= 0.5f)
         {
             float frustration =
-                Mathf.InverseLerp(0.6f, 0f, patiencePercent);
+                Mathf.InverseLerp(0.5f, 0f, patiencePercent);
 
             shakeAmount =
                 Mathf.Lerp(0.005f, 0.025f, frustration);
 
             shakeSpeed =
-                Mathf.Lerp(12f, 26f, frustration);
+                Mathf.Lerp(12f, 30f, frustration);
         }
 
         if (shakeAmount > 0f)
