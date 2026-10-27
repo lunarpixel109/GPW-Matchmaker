@@ -62,7 +62,7 @@ public class PlayerGenerator : MonoBehaviour
 
         foreach (Property property in this.gameObject.GetComponent<PropertyManager>().properties)
         {
-            newPlayer.GetComponent<PropertyStore>().AddProperty(property);
+            //newPlayer.GetComponent<PropertyStore>().AddProperty(property);
         }
 
 		newPlayer.transform.parent = Queue.transform;
@@ -76,6 +76,6 @@ public class PlayerGenerator : MonoBehaviour
 
         newPlayer.name = PlayerName;
 
-		newPlayer.GetComponent<PropertyStore>().PrintAllProperties();
+		//newPlayer.GetComponent<PropertyStore>().PrintAllProperties();
     }
 }
