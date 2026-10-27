@@ -15,12 +15,19 @@ public class PlayerGenerator : MonoBehaviour
 	private GameObject playerPrefab;
 
 	[SerializeField]
+	private Sprite playerSpriteDefalt;
+
+	[SerializeField]
 	private GameObject Queue;
 	[SerializeField]
 	private GameObject[] Lobbies;
 
 	[SerializeField] private List<Property> properties;
 	[SerializeField] private List<int> indexes;
+
+	GameObject newPlayer;
+	ItemData newItemData;
+	PropertyStore newPropertyStore;
 
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -57,15 +64,7 @@ public class PlayerGenerator : MonoBehaviour
 
 	private void GeneratePlayer()
 	{
-		Vector3 randPos = new Vector3(Random.Range(-10,10),Random.Range(-10,10),Random.Range(-10,10));
-
-		GameObject newPlayer = Instantiate(playerPrefab,randPos,Quaternion.identity);
-		ItemData newItemdata = ScriptableObject.CreateInstance<ItemData>();
-		PropertyStore newPropertyStore = ScriptableObject.CreateInstance<PropertyStore>();
-
-		newItemdata.propertyStore = newPropertyStore;
-		newPlayer.GetComponent<RoomItem>().data = newItemdata;
-		
+		SetupPlayer();
 
 		foreach (Property property in properties)
 		{
@@ -123,36 +122,26 @@ public class PlayerGenerator : MonoBehaviour
 
 
 		newPlayer.name = PlayerName;
+		newItemData.name = PlayerName;
 	}
-	
 
-	/* 
-	public void AddProperty(Property property) {
-	properties.Add(property, new PropertyValue());
-	switch (property.propertyType) {
-		case PropertyType.Number:
-			//Debug.Log($"{property.name}: {property.minValue} - {property.maxValue}");
-			float value = Random.Range(property.minValue, property.maxValue);
-			//Debug.Log($"{property.name}: {value}");
-			//float value = 0f;
+	private void SetupPlayer()
+	{
+        Vector3 randPos = Queue.transform.position;
+        randPos += new Vector3(Random.Range(-5, 5), 1, Random.Range(-5, 5));
+		
 
-			value = property.bag.numberValues[property.index];
-			property.IncrementIndex();
-			
-			properties[property] = PropertyValue.Create(value);
-			break;
-		case PropertyType.String:
-			int strValue;
-			int.TryParse(property.bag.stringValues[property.index], out strValue);
-			property.IncrementIndex();
-	
-			properties[property] = PropertyValue.Create(property, property.validStrings[strValue]);
-			break;
-		case PropertyType.Bool:
-			int random = Random.Range(0, 1);
-			properties[property] = PropertyValue.Create(random == 1);
-			break;
-		}
-	}
-	 */
+        newPlayer = Instantiate(playerPrefab, randPos, Quaternion.identity);
+        newItemData = ScriptableObject.CreateInstance<ItemData>();
+        newPropertyStore = ScriptableObject.CreateInstance<PropertyStore>();
+
+        newItemData.propertyStore = newPropertyStore;
+        newPlayer.GetComponent<RoomItem>().data = newItemData;
+
+		newItemData.prefab3D = playerPrefab;
+		newItemData.icon = playerSpriteDefalt;
+
+		//newItemData.colour = new Color(Random.Range(0,255), Random.Range(0, 255), Random.Range(0, 255));
+
+    }
 }
