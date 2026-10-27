@@ -3212,6 +3212,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738022060}
   m_CullTransparentMesh: 1
+--- !u!1 &1787656475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8623792663999120262, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+  m_PrefabInstance: {fileID: 4162472467083618038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1812465505
 GameObject:
   m_ObjectHideFlags: 0
@@ -3877,13 +3882,68 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8623792663999120262, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4162472467083618041}
+    - targetCorrespondingSourceObject: {fileID: 8623792663999120262, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4162472467083618040}
+    - targetCorrespondingSourceObject: {fileID: 8623792663999120262, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4162472467083618046}
   m_SourcePrefab: {fileID: 100100000, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
 --- !u!4 &4162472467083618039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3099019990133524098, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
   m_PrefabInstance: {fileID: 4162472467083618038}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4162472467083618040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787656475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4900ee76670b431585154e4a11653ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Seek
+  <Weight>k__BackingField: 1
+--- !u!114 &4162472467083618041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787656475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583e77abec8c94017bdc6ca4e0ff57db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SteeringAgent
+  maxCurrentSpeed: 10
+  maxSteeringSpeed: 5
+  currentVelocity: {x: 0, y: 0, z: 0}
+  steeringVelocity: {x: 0, y: 0, z: 0}
+  queueFloor: {fileID: 2135054050}
+  idleTimer: 10
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &4162472467083618046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787656475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79929805aee44f27a59eaf4c92d599bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Arrival
+  <Weight>k__BackingField: 5
+  arrivalRadius: 20
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
