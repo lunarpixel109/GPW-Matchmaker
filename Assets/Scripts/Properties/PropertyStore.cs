@@ -5,7 +5,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Property Store", menuName = "Game Data/Property Store")]
 public class PropertyStore: ScriptableObject {
-    
+
     public List<Property> properties;
     public List<PropertyValue> propertyValues;
 
@@ -16,4 +16,19 @@ public class PropertyStore: ScriptableObject {
         return propertyValues[index];
     }
 
+
+    public void AddProperty(Property property, int value) {
+        properties.Add(property);
+        propertyValues.Add(PropertyValue.Create(value));
+    }
+
+    public void AddProperty(Property property, string value) {
+        properties.Add(property);
+        propertyValues.Add(PropertyValue.Create(property, value));
+    }
+
+    public void AddProperty(Property property, bool value) {
+        properties.Add(property);
+        propertyValues.Add(PropertyValue.Create(value));
+    }
 }
