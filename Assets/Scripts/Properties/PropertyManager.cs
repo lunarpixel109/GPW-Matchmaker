@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PropertyManager : MonoBehaviour {
 
-    [SerializeField] private List<Property> properties;
+    [SerializeField]
+    public List<Property> properties;
 
     void Start() {
         

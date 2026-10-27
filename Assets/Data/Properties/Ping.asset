@@ -19,3 +19,5 @@ MonoBehaviour:
   <minValue>k__BackingField: 1
   <maxValue>k__BackingField: 200
   <validStrings>k__BackingField: []
+  <bag>k__BackingField: {fileID: 11400000, guid: b91b7a809f50f2243a4ed492d91a3578, type: 2}
+  <index>k__BackingField: 9
