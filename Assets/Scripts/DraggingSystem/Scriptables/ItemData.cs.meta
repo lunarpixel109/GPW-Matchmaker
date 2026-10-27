@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 76d7eec5ce8a44a19b2d7089df1ad1a4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - prefab3D: {fileID: 8623792663999120262, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+  - icon: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  - feel: {instanceID: 0}
+  - propertyStore: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
