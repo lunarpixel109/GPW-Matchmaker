@@ -13,6 +13,10 @@ GameObject:
   - component: {fileID: 732099273322014305}
   - component: {fileID: 2957142813605811087}
   - component: {fileID: 7587354657848122729}
+  - component: {fileID: 1757271918993081941}
+  - component: {fileID: 653582244439780474}
+  - component: {fileID: 2818651942704389914}
+  - component: {fileID: 2476167779589838463}
   m_Layer: 6
   m_Name: Player3D
   m_TagString: Untagged
@@ -128,6 +132,69 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7324584239000636639, guid: f8ad64a13286f8e4e8b438490b174866, type: 3}
+--- !u!114 &1757271918993081941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623792663999120262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583e77abec8c94017bdc6ca4e0ff57db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SteeringAgent
+  maxCurrentSpeed: 10
+  maxSteeringSpeed: 5
+  currentVelocity: {x: 0, y: 0, z: 0}
+  steeringVelocity: {x: 0, y: 0, z: 0}
+  queueFloor: {fileID: 0}
+  idleTimer: 10
+  settleTime: 0.3
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &653582244439780474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623792663999120262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4900ee76670b431585154e4a11653ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Seek
+  <Weight>k__BackingField: 1
+--- !u!114 &2818651942704389914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623792663999120262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79929805aee44f27a59eaf4c92d599bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Arrival
+  <Weight>k__BackingField: 5
+  arrivalRadius: 20
+--- !u!114 &2476167779589838463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623792663999120262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34eccabb7cf4491ead289c12ffc65b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAvoid
+  <Weight>k__BackingField: 3
+  lookAhead: 3
+  agentRadius: 0.5
+  padding: 0.2
 --- !u!1001 &8124717341117036607
 PrefabInstance:
   m_ObjectHideFlags: 0

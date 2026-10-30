@@ -1402,6 +1402,10 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 4cda53140198247f38ee34a1766bd440, type: 2}
+    - target: {fileID: 1757271918993081941, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+      propertyPath: queueFloor
+      value: 
+      objectReference: {fileID: 2135054050}
     - target: {fileID: 3099019990133524098, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.57
@@ -1560,6 +1564,10 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 4cda53140198247f38ee34a1766bd440, type: 2}
+    - target: {fileID: 1757271918993081941, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+      propertyPath: queueFloor
+      value: 
+      objectReference: {fileID: 2135054050}
     - target: {fileID: 3099019990133524098, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.88
@@ -3083,6 +3091,10 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 876427ab631a34eb5b656baf0c75bb0e, type: 2}
+    - target: {fileID: 1757271918993081941, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+      propertyPath: queueFloor
+      value: 
+      objectReference: {fileID: 2135054050}
     - target: {fileID: 3099019990133524098, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.74
@@ -3651,6 +3663,10 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 876427ab631a34eb5b656baf0c75bb0e, type: 2}
+    - target: {fileID: 1757271918993081941, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+      propertyPath: queueFloor
+      value: 
+      objectReference: {fileID: 2135054050}
     - target: {fileID: 3099019990133524098, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.51
@@ -3719,7 +3735,7 @@ GameObject:
   - component: {fileID: 2135054052}
   m_Layer: 7
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3830,6 +3846,10 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 876427ab631a34eb5b656baf0c75bb0e, type: 2}
+    - target: {fileID: 1757271918993081941, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+      propertyPath: queueFloor
+      value: 
+      objectReference: {fileID: 2135054050}
     - target: {fileID: 3099019990133524098, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
