@@ -27,6 +27,12 @@ public class SteeringAgent : MonoBehaviour {
 
     private bool _IsIdle = false;
 
+    private void OnEnable() {
+        Debug.Log("no more amimir");
+        
+        queueFloor = GameObject.FindGameObjectWithTag("Floor");
+    }
+
     private void Start() {
         targetPosition = SteeringHelper.GetTargetPosition(queueFloor);
     }
