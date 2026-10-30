@@ -8,12 +8,9 @@ public class PropertyManager : MonoBehaviour {
     [SerializeField]
     public List<Property> properties;
 
-
     void Start() {
-
-    // ONLY USED FOR DEBUG
-    public void Start() {
-    //GeneratePlayerData();
+        
+        
 
     }
 
