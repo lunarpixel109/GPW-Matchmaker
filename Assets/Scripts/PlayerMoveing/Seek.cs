@@ -1,8 +1,7 @@
 using PlayerMoveing;
 using UnityEngine;
 
-public class Seek : SteeringBehaviour
-{
+public class Seek : SteeringBehaviour {
     public override Vector3 UpdateBehaviour(SteeringAgent steeringAgent)
     {
         // Get the target position from the mouse input
