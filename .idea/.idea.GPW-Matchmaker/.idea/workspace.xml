@@ -12,11 +12,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a3f575b8-956c-45ce-9a67-9aed2438d398" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GPW-Matchmaker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GPW-Matchmaker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DraggingSystem/DragManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DraggingSystem/DragManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DraggingSystem/Prefabs/Player3D.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DraggingSystem/Prefabs/Player3D.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DraggingSystem/RoomItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DraggingSystem/RoomItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMoveing/SteeringAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMoveing/SteeringAgent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Player Information DIsplay (Separate Panel).unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Player Information DIsplay (Separate Panel).unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player Information Panel/PlayerInformationPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Player Information Panel/PlayerInformationPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Properties/PropertyStore.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Properties/PropertyStore.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,61 +50,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000110146585" />
-      <entry key="S2" value="1.0102490247097877" />
-      <entry key="S5" value="1.168787034431572" />
-      <entry key="S10" value="1.5389154113012724" />
-      <entry key="S30" value="2.7721540387733397" />
-      <entry key="S60" value="3.6125926820155483" />
-      <entry key="M2" value="4.380181347819438" />
-      <entry key="M5" value="10.012831442214157" />
-      <entry key="M10" value="23.566995338451644" />
-      <entry key="M15" value="37.12738915574144" />
-      <entry key="M30" value="77.48790476264952" />
-      <entry key="H1" value="134.31800762570768" />
-      <entry key="H2" value="186.51603661986383" />
-      <entry key="H4" value="222.6568787262794" />
-      <entry key="D1" value="259.7028257829158" />
-      <entry key="W1" value="266.79507718766115" />
+      <entry key="MS100" value="1.000000000000007" />
+      <entry key="MS500" value="1.001797293066587" />
+      <entry key="S2" value="1.3823338443250077" />
+      <entry key="S5" value="2.805746888448103" />
+      <entry key="S10" value="5.181605732127268" />
+      <entry key="S30" value="9.690609253239273" />
+      <entry key="S60" value="13.047413350909265" />
+      <entry key="M2" value="21.346670555076155" />
+      <entry key="M5" value="53.01056853358123" />
+      <entry key="M10" value="99.00459243101763" />
+      <entry key="M15" value="133.41775111922598" />
+      <entry key="M30" value="205.03840187802845" />
+      <entry key="H1" value="291.5537113614161" />
+      <entry key="H2" value="373.5272354854882" />
+      <entry key="H4" value="433.27728065185073" />
+      <entry key="D1" value="497.28090231195426" />
+      <entry key="W1" value="509.8537934302065" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.3822258145698413E-14" />
-      <entry key="MS500" value="0.0016908917295305854" />
-      <entry key="S2" value="0.2028234406107998" />
-      <entry key="S5" value="0.5494041154463476" />
-      <entry key="S10" value="0.919534451737251" />
-      <entry key="S30" value="1.8009119606922748" />
-      <entry key="S60" value="2.288604838640007" />
-      <entry key="M2" value="2.6675761073497695" />
-      <entry key="M5" value="4.520980610113295" />
-      <entry key="M10" value="8.689527130532618" />
-      <entry key="M15" value="12.632945444895814" />
-      <entry key="M30" value="23.55557583412592" />
-      <entry key="H1" value="38.504450004266815" />
-      <entry key="H2" value="52.270575268139496" />
-      <entry key="H4" value="61.86918522828437" />
-      <entry key="D1" value="71.77278094333674" />
-      <entry key="W1" value="73.6763543821245" />
+      <entry key="MS100" value="1.2642947459405197E-51" />
+      <entry key="MS500" value="6.612560623247905E-11" />
+      <entry key="S2" value="0.0028516250208096123" />
+      <entry key="S5" value="0.09594822981052849" />
+      <entry key="S10" value="0.30975549025712634" />
+      <entry key="S30" value="0.708440767599213" />
+      <entry key="S60" value="1.570215903083654" />
+      <entry key="M2" value="5.129178983506495" />
+      <entry key="M5" value="14.392226588368196" />
+      <entry key="M10" value="22.881826734416133" />
+      <entry key="M15" value="28.673707092209707" />
+      <entry key="M30" value="42.099957393131554" />
+      <entry key="H1" value="60.86217460756155" />
+      <entry key="H2" value="80.03217852269835" />
+      <entry key="H4" value="94.50066306446261" />
+      <entry key="D1" value="110.32249449606371" />
+      <entry key="W1" value="113.46295558091605" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="7.787763343577475E-11" />
-      <entry key="MS500" value="0.009523798520488062" />
-      <entry key="S2" value="0.370706846157102" />
-      <entry key="S5" value="0.9934398284171896" />
-      <entry key="S10" value="1.796254598392563" />
-      <entry key="S30" value="4.131399663055507" />
-      <entry key="S60" value="5.622409158888491" />
-      <entry key="M2" value="6.888181344334616" />
-      <entry key="M5" value="14.450587528944725" />
-      <entry key="M10" value="32.19375908838998" />
-      <entry key="M15" value="49.70146151848951" />
-      <entry key="M30" value="100.98362902916001" />
-      <entry key="H1" value="172.76896953597722" />
-      <entry key="H2" value="238.74860601306014" />
-      <entry key="H4" value="284.5030871282793" />
-      <entry key="D1" value="331.47109030131026" />
-      <entry key="W1" value="340.47076746321613" />
+      <entry key="MS100" value="0.026460791011328977" />
+      <entry key="MS500" value="0.48396354353348925" />
+      <entry key="S2" value="1.0356596870366004" />
+      <entry key="S5" value="2.432041985581784" />
+      <entry key="S10" value="5.057562693322035" />
+      <entry key="S30" value="10.16168656134747" />
+      <entry key="S60" value="14.458617088980622" />
+      <entry key="M2" value="26.330655415650018" />
+      <entry key="M5" value="67.26031918687127" />
+      <entry key="M10" value="121.76322797851728" />
+      <entry key="M15" value="161.98243475454362" />
+      <entry key="M30" value="247.0492353403136" />
+      <entry key="H1" value="352.344189744007" />
+      <entry key="H2" value="453.5088673362519" />
+      <entry key="H4" value="527.7469850074489" />
+      <entry key="D1" value="607.5971873095167" />
+      <entry key="W1" value="623.315831997481" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -132,12 +130,13 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "player-information-display",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
     "settings.editor.selected.configurable": "preferences.sourceCode.C#"
   }
 }]]></component>

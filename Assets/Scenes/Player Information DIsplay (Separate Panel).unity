@@ -1780,6 +1780,7 @@ MonoBehaviour:
   floorMask:
     serializedVersion: 2
     m_Bits: 128
+  currentItem: {fileID: 0}
 --- !u!1 &1001467671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,8 +1949,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca638447e95c8017b825b575e345540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInformationPanel
-  playerInformationHeader: {fileID: 0}
-  playerPropertyPanel: {fileID: 0}
+  playerInformationHeader: {fileID: 138797299}
+  playerPropertyPanel: {fileID: 991658016}
+  playerPropertyPrefab: {fileID: 7928545177365206894, guid: 0cd2a5c6658d371ed86ab38e1b466c8d, type: 3}
+  roomWindow: {fileID: 0}
 --- !u!1 &1135709198
 GameObject:
   m_ObjectHideFlags: 0

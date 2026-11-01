@@ -17,6 +17,7 @@ public class PropertyStore: ScriptableObject {
     }
 
 
+
     public void AddProperty(Property property, float value) {
         properties.Add(property);
         propertyValues.Add(PropertyValue.Create(value));
@@ -31,4 +32,6 @@ public class PropertyStore: ScriptableObject {
         properties.Add(property);
         propertyValues.Add(PropertyValue.Create(value));
     }
+
+
 }
