@@ -137,6 +137,8 @@ public class PlayerGenerator : MonoBehaviour
 
         newItemData.propertyStore = newPropertyStore;
         newPlayer.GetComponent<RoomItem>().data = newItemData;
+        PlayerManager pm = newPlayer.GetComponent<PlayerManager>();
+        pm.autoPlaceOnStart =  true;
 
 		newItemData.prefab3D = playerPrefab;
 		newItemData.icon = playerSpriteDefalt;

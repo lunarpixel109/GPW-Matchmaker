@@ -28,13 +28,17 @@ public class SteeringAgent : MonoBehaviour {
     private bool _IsIdle = false;
 
     private void OnEnable() {
-        Debug.Log("no more amimir");
-        
-        queueFloor = GameObject.FindGameObjectWithTag("Floor");
-    }
+        if (queueFloor == null) {
+            enabled = false; // not placed yet
+            return;
+        }
 
-    private void Start() {
+        currentVelocity = Vector3.zero;
+        steeringVelocity = Vector3.zero;
+        _idleTimerUpdate = 0f;
+        _IsIdle = false;
         targetPosition = SteeringHelper.GetTargetPosition(queueFloor);
+        SetSeekEnabled(true);
     }
 
     private void Update() {
