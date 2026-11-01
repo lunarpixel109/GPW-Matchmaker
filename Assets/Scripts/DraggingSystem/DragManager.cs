@@ -64,6 +64,8 @@ public class DragManager : MonoBehaviour
 
         if (from)
         {
+            from.CallPickedUp();
+            
             proxy3D = from.gameObject;
             motion3D.Reset(from.transform.position);
             proxyShown = true;
@@ -123,6 +125,11 @@ public class DragManager : MonoBehaviour
 
     void EndDrag(Vector2 mouseP, bool inside, bool onFloor)
     {
+        // Clear this first: Settle runs synchronously up to its first yield and uses
+        // source3D to detect a re-pickup, so a stale value makes it bail out immediately.
+        RoomItem from = source3D;
+        source3D = null;
+
         SetHover(null);
 
         //Loose/slotted icons should start from their normal scale and rotation
@@ -138,7 +145,7 @@ public class DragManager : MonoBehaviour
         else if (inside)
         {
             //Released over the window but not on the floor == cancel
-            if (source3D != null)
+            if (from != null)
             {
                 proxy3D.SetActive(true);
                 StartCoroutine(Settle(proxy3D.transform, motion3D, startPos, feel));
@@ -166,7 +173,6 @@ public class DragManager : MonoBehaviour
         }
 
         heldPlayer = null;
-        source3D = null;
         proxy3D = null;
         ghost2DPlayer = null;
         feel = null;
@@ -212,8 +218,11 @@ public class DragManager : MonoBehaviour
                 yield return null;
             }
         }
-        if (t != null && !(source3D != null && source3D.transform == t))
+
+        if (t != null && !(source3D != null && source3D.transform == t)) {
             t.position = finalPos;
+            if (t.TryGetComponent(out RoomItem item)) item.CallSettled();
+        }
     }
 
     // ---------- drop targets ----------

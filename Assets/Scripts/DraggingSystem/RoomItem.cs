@@ -3,8 +3,10 @@ using Scriptables;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RoomItem : MonoBehaviour
-{
+public class RoomItem : MonoBehaviour {
+    public event Action Settled;
+    public event Action PickedUp;
+    
     public ItemData data;
 
     void Start() => ApplyColour();
@@ -20,5 +22,8 @@ public class RoomItem : MonoBehaviour
             rend.material.color = data.colour;
         }
     }
+    
+    public void CallSettled() => Settled?.Invoke();
+    public void CallPickedUp() => PickedUp?.Invoke();
 }
 
