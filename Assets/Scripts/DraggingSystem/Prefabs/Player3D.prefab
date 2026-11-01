@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 653582244439780474}
   - component: {fileID: 2818651942704389914}
   - component: {fileID: 2476167779589838463}
+  - component: {fileID: -5675394661845084454}
+  - component: {fileID: 2219396587529085714}
   m_Layer: 6
   m_Name: Player3D
   m_TagString: Untagged
@@ -195,6 +197,40 @@ MonoBehaviour:
   lookAhead: 3
   agentRadius: 0.5
   padding: 0.2
+--- !u!114 &-5675394661845084454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623792663999120262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48cbea9eca0fcee4a937c87230681b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPatience
+  maxPatience: 0
+  currentPatience: 0
+  isWaiting: 1
+  notificationPrefab: {fileID: 0}
+  notificationCanvas: {fileID: 0}
+--- !u!114 &2219396587529085714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623792663999120262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96f201c9f91cad49b9ae077ee4c8d3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PatienceVisuals
+  patience: {fileID: 0}
+  characterVisual: {fileID: 0}
+  characterRenderer: {fileID: 0}
+  characterMaterial: {fileID: 0}
+  warningText: {fileID: 0}
 --- !u!1001 &8124717341117036607
 PrefabInstance:
   m_ObjectHideFlags: 0
