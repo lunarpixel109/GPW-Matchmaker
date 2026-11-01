@@ -30,8 +30,10 @@ public class PlayerInformationPanel : MonoBehaviour
 
         if (previousPlayer != currentPlayer) {
 
-            for (int i = 0; i < playerPropertyPanel.transform.childCount; ++i) {
-                Destroy(playerPropertyPanel.transform.GetChild(i).gameObject);
+            for (int i = playerPropertyPanel.transform.childCount -1; i >= 0; --i) {
+                var child = playerPropertyPanel.transform.GetChild(i);
+                child.SetParent(null);
+                Destroy(child.gameObject);
             }
 
             previousPlayer = currentPlayer;
