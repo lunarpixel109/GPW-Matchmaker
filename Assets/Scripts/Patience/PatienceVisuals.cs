@@ -19,7 +19,7 @@ public class PatienceVisuals : MonoBehaviour
         startPosition = characterVisual.localPosition;
 
         characterMaterial = characterRenderer.material;
-        // originalColour = characterMaterial.color;
+        originalColour = characterMaterial.color;
 
         if (warningText != null)
         {

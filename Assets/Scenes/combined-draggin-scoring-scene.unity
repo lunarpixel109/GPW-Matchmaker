@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730ff48e654b24c50b21b4650b581a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleSlot
+  requireCorrectItem: 0
   accepts: {fileID: 11400000, guid: 876427ab631a34eb5b656baf0c75bb0e, type: 2}
   manager: {fileID: 1812465507}
   occupant: {fileID: 0}
@@ -645,6 +646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730ff48e654b24c50b21b4650b581a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LobbySlot
+  requireCorrectItem: 0
   accepts: {fileID: 11400000, guid: 876427ab631a34eb5b656baf0c75bb0e, type: 2}
   manager: {fileID: 1812465507}
   occupant: {fileID: 0}
@@ -1014,6 +1016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730ff48e654b24c50b21b4650b581a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleSlot
+  requireCorrectItem: 0
   accepts: {fileID: 11400000, guid: 4cda53140198247f38ee34a1766bd440, type: 2}
   manager: {fileID: 1812465507}
   occupant: {fileID: 0}
@@ -1164,6 +1167,7 @@ MonoBehaviour:
   floorMask:
     serializedVersion: 2
     m_Bits: 128
+  currentItem: {fileID: 0}
 --- !u!1 &1001467671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,6 +1332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730ff48e654b24c50b21b4650b581a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleSlot
+  requireCorrectItem: 0
   accepts: {fileID: 11400000, guid: 4cda53140198247f38ee34a1766bd440, type: 2}
   manager: {fileID: 1812465507}
   occupant: {fileID: 0}
@@ -1573,6 +1578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730ff48e654b24c50b21b4650b581a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleSlot
+  requireCorrectItem: 0
   accepts: {fileID: 11400000, guid: 876427ab631a34eb5b656baf0c75bb0e, type: 2}
   manager: {fileID: 1812465507}
   occupant: {fileID: 0}
@@ -2256,6 +2262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730ff48e654b24c50b21b4650b581a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleSlot
+  requireCorrectItem: 0
   accepts: {fileID: 11400000, guid: 4cda53140198247f38ee34a1766bd440, type: 2}
   manager: {fileID: 1812465507}
   occupant: {fileID: 0}
@@ -2667,6 +2674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730ff48e654b24c50b21b4650b581a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleSlot
+  requireCorrectItem: 0
   accepts: {fileID: 11400000, guid: 876427ab631a34eb5b656baf0c75bb0e, type: 2}
   manager: {fileID: 1812465507}
   occupant: {fileID: 0}
@@ -2775,6 +2783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730ff48e654b24c50b21b4650b581a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleSlot
+  requireCorrectItem: 0
   accepts: {fileID: 11400000, guid: 4cda53140198247f38ee34a1766bd440, type: 2}
   manager: {fileID: 1812465507}
   occupant: {fileID: 0}
@@ -2971,6 +2980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730ff48e654b24c50b21b4650b581a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleSlot
+  requireCorrectItem: 0
   accepts: {fileID: 11400000, guid: 876427ab631a34eb5b656baf0c75bb0e, type: 2}
   manager: {fileID: 1812465507}
   occupant: {fileID: 0}
@@ -3408,6 +3418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 730ff48e654b24c50b21b4650b581a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PuzzleSlot
+  requireCorrectItem: 0
   accepts: {fileID: 11400000, guid: 4cda53140198247f38ee34a1766bd440, type: 2}
   manager: {fileID: 1812465507}
   occupant: {fileID: 0}

@@ -367,7 +367,7 @@ MonoBehaviour:
   patience: {fileID: 0}
   characterVisual: {fileID: 0}
   characterRenderer: {fileID: 0}
-  characterMaterial: {fileID: 0}
+  characterMaterial: {fileID: 2100000, guid: b82c2f2cd14028d40bb8e587fd9969fb, type: 2}
   warningText: {fileID: 0}
 --- !u!114 &8047163186962485038
 MonoBehaviour:
@@ -383,3 +383,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
   queueFloor: {fileID: 0}
   canvas: {fileID: 0}
+  autoPlaceOnStart: 0

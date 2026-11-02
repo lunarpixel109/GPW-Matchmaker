@@ -84,7 +84,7 @@ public class PlayerManager : MonoBehaviour
         _patienceVisuals.patience = _playerPatience;
         _patienceVisuals.characterVisual = transform;
         _patienceVisuals.characterRenderer = rend;
-        _patienceVisuals.characterMaterial = rend.material;
+        //_patienceVisuals.characterMaterial = rend.material;
         _patienceVisuals.warningText = _warningText;
     }
 }

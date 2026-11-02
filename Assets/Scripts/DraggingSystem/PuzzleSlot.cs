@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Accepts one specific ItemData, shows green/red hover feedback, and holds its icon like a LobbySlot does,
-/// so a placed icon can be picked back up and moved to another slot, the room, or loose on the canvas.
+/// Accepts one specific ItemData (or any item if requireCorrectItem is off), shows green/red hover feedback,
+/// and holds its icon like a LobbySlot does, so a placed icon can be picked back up and moved elsewhere.
 /// </summary>
 [RequireComponent(typeof(Image))]
 public class PuzzleSlot : MonoBehaviour, IDropTarget
 {
+    [Tooltip("If on, only 'accepts' can be dropped here. If off, any item is allowed.")]
+    public bool requireCorrectItem = true;
+
     public ItemData accepts;
     public PuzzleManager manager;
     public DraggableIcon occupant;
@@ -19,6 +22,10 @@ public class PuzzleSlot : MonoBehaviour, IDropTarget
     public Color wrong   = new Color(0.9f, 0.3f, 0.3f, 0.8f);
 
     Image img;
+
+    /// <summary>True if the slot is filled with the item it expects (always true for any filled slot when checking is off).</summary>
+    public bool IsCorrectlyFilled =>
+        occupant != null && (!requireCorrectItem || occupant.data == accepts);
 
     void Awake()
     {
@@ -32,12 +39,14 @@ public class PuzzleSlot : MonoBehaviour, IDropTarget
     public bool Contains(Vector2 screenPos) =>
         RectTransformUtility.RectangleContainsScreenPoint((RectTransform)transform, screenPos, null);
 
-    public bool CanAccept(ItemData item) => occupant == null && item == accepts;
+    bool Matches(ItemData item) => !requireCorrectItem || item == accepts;
+
+    public bool CanAccept(ItemData item) => occupant == null && Matches(item);
 
     public void HoverEnter(ItemData item)
     {
         if (occupant != null) return;
-        img.color = item == accepts ? correct : wrong;
+        img.color = Matches(item) ? correct : wrong;
     }
 
     public void HoverExit()
