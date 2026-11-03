@@ -36,7 +36,7 @@ public class PatienceVisuals : MonoBehaviour
         //     return;
         // }
         
-        originalColour = characterMaterial.color;
+        //originalColour = characterMaterial.color;
 
         float patiencePercent = patience.currentPatience / patience.maxPatience;
 

@@ -3019,6 +3019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scoring.LobbyScoreManager
   isScoring: 0
   overallScoreManager: {fileID: 1597045660}
+  submitButton: {fileID: 13874203}
 --- !u!114 &921960010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8059,6 +8060,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scoring.LobbyScoreManager
   isScoring: 0
   overallScoreManager: {fileID: 1597045660}
+  submitButton: {fileID: 289129976}
 --- !u!1 &1827209637
 GameObject:
   m_ObjectHideFlags: 0
@@ -9423,6 +9425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scoring.LobbyScoreManager
   isScoring: 0
   overallScoreManager: {fileID: 1597045660}
+  submitButton: {fileID: 48092902}
 --- !u!114 &2138939375
 MonoBehaviour:
   m_ObjectHideFlags: 0
