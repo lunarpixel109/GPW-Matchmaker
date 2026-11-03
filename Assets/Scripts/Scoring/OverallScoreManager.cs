@@ -54,7 +54,7 @@ namespace Scoring {
         private IEnumerator ShowChangeInScore(FinalScoreLevel level, Transform lobby) {
             var newScoreText = Instantiate(scoreTextPrefab,  lobby);
             newScoreText.GetComponent<RectTransform>().anchoredPosition = lobby.GetComponent<RectTransform>().anchoredPosition + transformOffsetToLobby;
-            newScoreText.GetComponentInChildren<TextMeshProUGUI>().text = level.ToString();
+            newScoreText.GetComponentInChildren<TextMeshProUGUI>().text = level.text;
             newScoreText.GetComponentInChildren<TextMeshProUGUI>().color = level.colour;
             yield return new WaitForSeconds(1f);
             Destroy(newScoreText);

@@ -6856,34 +6856,34 @@ MonoBehaviour:
     okBounds: 200
   scoreTextPrefab: {fileID: 3392579282721610367, guid: 07a55bf6235824c6cb694fb0caa22211, type: 3}
   overallScoreText: {fileID: 2124288786}
-  transformOffsetToLobby: {x: -221, y: 165}
+  transformOffsetToLobby: {x: -221, y: 500}
   finalScoreLevels:
   - text: Terrible
-    colour: {r: 0.4716981, g: 0, b: 0, a: 0}
+    colour: {r: 0.4716981, g: 0, b: 0, a: 1}
     lowerBound: 0
     valueChange: -500
   - text: Bad
-    colour: {r: 0.6886792, g: 0.016242431, b: 0.016242431, a: 0}
+    colour: {r: 0.6886792, g: 0.016242431, b: 0.016242431, a: 1}
     lowerBound: 0.2
     valueChange: -250
   - text: Ok
-    colour: {r: 0.6901961, g: 0.5791917, b: 0.01568626, a: 0}
+    colour: {r: 0.6901961, g: 0.5791917, b: 0.01568626, a: 1}
     lowerBound: 0.4
     valueChange: 0
   - text: Good
-    colour: {r: 0.44292888, g: 0.6901961, b: 0.01568626, a: 0}
+    colour: {r: 0.44292888, g: 0.6901961, b: 0.01568626, a: 1}
     lowerBound: 0.5
     valueChange: 100
   - text: Great
-    colour: {r: 0.2050694, g: 0.6901961, b: 0.01568626, a: 0}
+    colour: {r: 0.2050694, g: 0.6901961, b: 0.01568626, a: 1}
     lowerBound: 0.7
     valueChange: 250
   - text: Excellent
-    colour: {r: 0.11319961, g: 0.8301887, b: 0.019579919, a: 0}
+    colour: {r: 0.11319961, g: 0.8301887, b: 0.019579919, a: 1}
     lowerBound: 0.8
     valueChange: 500
   - text: Perfect
-    colour: {r: 0.83137256, g: 0.01960784, b: 0.534654, a: 0}
+    colour: {r: 0.83137256, g: 0.01960784, b: 0.534654, a: 1}
     lowerBound: 1
     valueChange: 1000
   forceScoring:
