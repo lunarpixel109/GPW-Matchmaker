@@ -2613,6 +2613,10 @@ MonoBehaviour:
   Lobbies:
   - {fileID: 471755199}
   indexes: 
+  prefix: {fileID: 11400000, guid: ba70fbd99711e2d48835662371bddd7e, type: 2}
+  firstName: {fileID: 11400000, guid: a0d238ef13fcb05478a87a3d7372ccf6, type: 2}
+  secondName: {fileID: 11400000, guid: c31ad5b195ae62c44868721bd9f0e693, type: 2}
+  suffix: {fileID: 11400000, guid: c603a6f641162ce4c986cbcabc735af5, type: 2}
   printDebug: 0
 --- !u!114 &1597045663
 MonoBehaviour:

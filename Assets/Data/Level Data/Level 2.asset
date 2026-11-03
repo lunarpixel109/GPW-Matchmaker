@@ -21,4 +21,5 @@ MonoBehaviour:
   winScore: 20
   currentScore: 0
   levelTime: 10
+  playerGenerationCooldown: 0.5
   scene: {fileID: 102900000, guid: 0368a8c1ee11aaf49bafbc4a4a75e429, type: 3}

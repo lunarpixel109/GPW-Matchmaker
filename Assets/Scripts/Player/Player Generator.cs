@@ -28,6 +28,11 @@ public class PlayerGenerator : MonoBehaviour
 	ItemData newItemData;
 	PropertyStore newPropertyStore;
 
+    [SerializeField] private NameList prefix;
+    [SerializeField] private NameList firstName;
+	[SerializeField] private NameList secondName;
+	[SerializeField] private NameList suffix;
+
 	[SerializeField] private bool printDebug;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -116,14 +121,31 @@ public class PlayerGenerator : MonoBehaviour
 
 		newPlayer.transform.parent = Queue.transform;
 
-		string PlayerName = "";
-		for (int i = 0; i < 5; i++)
-		{
-			PlayerName += (char)UnityEngine.Random.Range(65, 90);
-		}
+        string PlayerName = "";
+        //for (int i = 0; i < 5; i++)
+        //{
+        //	PlayerName += (char)UnityEngine.Random.Range(65, 90);
+        //}
+
+        if (UnityEngine.Random.Range(0, 100) > 75)
+        {
+            PlayerName += prefix.names[UnityEngine.Random.Range(0, prefix.names.Count)];
+        }
+
+        PlayerName += firstName.names[UnityEngine.Random.Range(0, firstName.names.Count)];
+
+        if (UnityEngine.Random.Range(0, 100) > 50)
+        {
+            PlayerName += secondName.names[UnityEngine.Random.Range(0, secondName.names.Count)];
+        }
+
+        if (UnityEngine.Random.Range(0, 100) > 75)
+        {
+            PlayerName += suffix.names[UnityEngine.Random.Range(0, suffix.names.Count)];
+        }
 
 
-		newPlayer.name = PlayerName;
+        newPlayer.name = PlayerName;
 		newItemData.name = PlayerName;
 	}
 
