@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Scoring {
     public enum ScoreLevel {
@@ -32,12 +33,24 @@ namespace Scoring {
 
 
         public bool isScoring = false;
-        
+
+        public delegate void OnScoringComplete(FinalScoreLevel ccuChange, Transform self);
+        public OnScoringComplete onScoringComplete;
+
+
+        public OverallScoreManager overallScoreManager;
+
+        [SerializeField] private Button submitButton;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start() {
             playerProperties = GetComponentsInChildren<PuzzleSlot>().ToList();
-            
+            submitButton.onClick.AddListener(SubmitPressed);
+        }
+
+        public void SubmitPressed() {
+            FinalScoreLevel ccuChange = GetFinalScoreLevel(overallScoreManager.scoreConditions, overallScoreManager.finalScoreLevels);
+            onScoringComplete?.Invoke(ccuChange, transform.parent);
         }
 
 
@@ -104,23 +117,22 @@ namespace Scoring {
 
         }
 
-        public int GetPlayerCountChange(List<ScoreCondition> conditions, List<FinalScoreLevel> finalScoreLevels) {
+        public FinalScoreLevel GetFinalScoreLevel(List<ScoreCondition> conditions, List<FinalScoreLevel> finalScoreLevels) {
             float score = GetOverallScore(conditions);
-            int playerCountChange = 0;
+            //int playerCountChange = 0;
 
             for (int i = 0; i <= finalScoreLevels.Count - 2; ++i) {
                 if (score >= finalScoreLevels[i].lowerBound && score < finalScoreLevels[i+1].lowerBound) {
-                    playerCountChange = finalScoreLevels[i].valueChange;
+                    return finalScoreLevels[i];
                     break;
                 } else if (i == finalScoreLevels.Count - 2) {
                     if (score >= finalScoreLevels[i + 1].lowerBound) {
-                        playerCountChange = finalScoreLevels[i + 1].valueChange;
+                        return finalScoreLevels[i + 1];
                     }
                 }
             }
-            
-            Debug.Log(playerCountChange);
-            return playerCountChange;
+
+            return finalScoreLevels[0];
         }
     }
 }
