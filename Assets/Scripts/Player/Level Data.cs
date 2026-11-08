@@ -10,6 +10,9 @@ public class LevelData : ScriptableObject
 
 	public GameObject PlayerPrefab;
 
+    public bool lastDay;
+    public bool winLose;
+
     public int StartingScore;
     public int winScore;
     public int currentScore;

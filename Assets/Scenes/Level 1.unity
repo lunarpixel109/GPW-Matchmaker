@@ -2606,8 +2606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f110b5b733b2cc4dacd40c976e4ed19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGenerator
-  levelData: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  levelData: {fileID: 11400000, guid: d34da8ef285e03b4d846d1a8911c2a05, type: 2}
   playerSpriteDefalt: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   Queue: {fileID: 15580238}
   Lobbies:
@@ -2617,7 +2616,7 @@ MonoBehaviour:
   firstName: {fileID: 11400000, guid: a0d238ef13fcb05478a87a3d7372ccf6, type: 2}
   secondName: {fileID: 11400000, guid: c31ad5b195ae62c44868721bd9f0e693, type: 2}
   suffix: {fileID: 11400000, guid: c603a6f641162ce4c986cbcabc735af5, type: 2}
-  printDebug: 0
+  printDebug: 1
 --- !u!114 &1597045663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2633,6 +2632,8 @@ MonoBehaviour:
   previousLevel: {fileID: 0}
   currentLevel: {fileID: 11400000, guid: d34da8ef285e03b4d846d1a8911c2a05, type: 2}
   nextLexel: {fileID: 11400000, guid: 8ea11f4cf8a973b4a9c48c1d72467204, type: 2}
+  winScene: {fileID: 0}
+  loseScene: {fileID: 11400000, guid: fdab5782c4ed67340b20e5aaa8d619cc, type: 2}
   Score: 0
   timer: 0
 --- !u!1 &1618955396

@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 88c452bb4eeab8f348156e656841ced9, type: 2}
   - {fileID: 11400000, guid: 01945e66fddb2d03ba058c5a3a7e9fe6, type: 2}
   PlayerPrefab: {fileID: 8623792663999120262, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+  lastDay: 1
   StartingScore: 0
   winScore: 20
   currentScore: 0

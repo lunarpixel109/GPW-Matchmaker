@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,11 @@ public class GameManager : MonoBehaviour
 {
 	[SerializeField]private LevelData previousLevel;
 	[SerializeField]private LevelData currentLevel;
-	[SerializeField] private LevelData nextLexel;
+	[SerializeField]private LevelData nextLexel;
+
+	[SerializeField] private LevelData winScene;
+	[SerializeField] private LevelData loseScene;
+
 
 	public int Score;
 	public float timer;
@@ -49,11 +54,17 @@ public class GameManager : MonoBehaviour
 				{
 					SceneManager.LoadScene(nextLexel.scene.name);
 				}
+				else if (currentLevel.lastDay)
+				{
+					winScene.currentScore = Score;
+					SceneManager.LoadScene(winScene.scene.name);
+				}
 			}
 			else
 			{
 				print("loser");
-			}
+                SceneManager.LoadScene(loseScene.name);
+            }
 		}
 
 

@@ -11,7 +11,6 @@ public class PlayerGenerator : MonoBehaviour
 	[SerializeField]
 	private LevelData levelData;
 
-	[SerializeField]
 	private GameObject playerPrefab;
 
 	[SerializeField]
