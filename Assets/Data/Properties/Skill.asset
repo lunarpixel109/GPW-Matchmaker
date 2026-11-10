@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca88d38133ad1ce8d92d722f66b34028, type: 3}
-  m_Name: Ping
+  m_Name: Skill
   m_EditorClassIdentifier: Assembly-CSharp::Property
-  <propertyName>k__BackingField: Ping
-  <propertyDescription>k__BackingField: The Round Trip Time a packet takes to go
-    from client to server and back again
+  <propertyName>k__BackingField: Skill Rating
+  <propertyDescription>k__BackingField: The players Skill Rating
   <propertyType>k__BackingField: 0
-  <minValue>k__BackingField: 1
-  <maxValue>k__BackingField: 200
+  <minValue>k__BackingField: 0
+  <maxValue>k__BackingField: 300
   <validStrings>k__BackingField: []
+  <bag>k__BackingField: {fileID: 11400000, guid: 1e30d95fe049c8947a047448ebefd1d2, type: 2}
+  <index>k__BackingField: 9

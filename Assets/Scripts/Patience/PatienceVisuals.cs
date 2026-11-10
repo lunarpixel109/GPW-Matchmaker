@@ -30,11 +30,13 @@ public class PatienceVisuals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!patience.isWaiting)
-        {
-            characterVisual.localPosition = startPosition;
-            return;
-        }
+        // if (!patience.isWaiting)
+        // {
+        //     characterVisual.localPosition = startPosition;
+        //     return;
+        // }
+        
+        //originalColour = characterMaterial.color;
 
         float patiencePercent = patience.currentPatience / patience.maxPatience;
 
@@ -94,12 +96,12 @@ public class PatienceVisuals : MonoBehaviour
                 Mathf.Sin(Time.time * shakeSpeed * 1.3f)
                 * shakeAmount * 0.5f;
 
-            characterVisual.localPosition =
-                startPosition + new Vector3(x, 0f, z);
+            characterVisual.localPosition +=
+                new Vector3(x, 0f, z);
         }
         else
         {
-            characterVisual.localPosition = startPosition;
+            //characterVisual.localPosition = startPosition;
         }
 
         // Red flashing
