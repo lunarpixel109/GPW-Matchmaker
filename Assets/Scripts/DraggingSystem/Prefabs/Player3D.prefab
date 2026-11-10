@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48cbea9eca0fcee4a937c87230681b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPatience
-  maxPatience: 15
+  maxPatience: 60
   currentPatience: 0
   isWaiting: 1
   notificationPrefab: {fileID: 6309180098329515368, guid: fb70bb9383419dc41ac3674b23fbb450, type: 3}
