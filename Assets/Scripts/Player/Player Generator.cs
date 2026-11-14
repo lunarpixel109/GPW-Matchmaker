@@ -1,17 +1,16 @@
 using UnityEngine;
 using System.Collections.Generic;
-using static UnityEditor.EditorGUI;
-using static UnityEngine.Audio.GeneratorInstance;
 using Random = UnityEngine.Random;
 using Scriptables;
 
 public class PlayerGenerator : MonoBehaviour
 {
+
 	private float timer = 0f;
-	[SerializeField]
-	private float timerMax;
 
 	[SerializeField]
+	private LevelData levelData;
+
 	private GameObject playerPrefab;
 
 	[SerializeField]
@@ -22,21 +21,29 @@ public class PlayerGenerator : MonoBehaviour
 	[SerializeField]
 	private GameObject[] Lobbies;
 
-	[SerializeField] private List<Property> properties;
 	[SerializeField] private List<int> indexes;
 
 	GameObject newPlayer;
 	ItemData newItemData;
 	PropertyStore newPropertyStore;
 
+    [SerializeField] private NameList prefix;
+    [SerializeField] private NameList firstName;
+	[SerializeField] private NameList secondName;
+	[SerializeField] private NameList suffix;
+
+	[SerializeField] private bool printDebug;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
-		timer = timerMax;
+		levelData = this.gameObject.GetComponent<GameManager>().GetCurrentLevelData();
+		playerPrefab = levelData.PlayerPrefab;
+
+		timer = levelData.playerGenerationCooldown;
 
 		indexes = new List<int>();
-		foreach (Property property in properties)
+		foreach (Property property in levelData.properties)
 		{
 			if (property.propertyType == PropertyType.Number)
 			{
@@ -54,7 +61,7 @@ public class PlayerGenerator : MonoBehaviour
 	{
 		if (timer <= 0f)
 		{
-			timer = timerMax;
+			timer = levelData.playerGenerationCooldown;
 
 			GeneratePlayer();
 		}
@@ -66,7 +73,7 @@ public class PlayerGenerator : MonoBehaviour
 	{
 		SetupPlayer();
 
-		foreach (Property property in properties)
+		foreach (Property property in levelData.properties)
 		{
 			float floatValue = 0;
 			string stringValue = "A";
@@ -79,7 +86,7 @@ public class PlayerGenerator : MonoBehaviour
                         stringValue = property.bag.stringValues[property.index];
                         property.IncrementIndex();
 
-                        print($"{property.name} was generated with value {stringValue}");
+						PrintPlayer(property,stringValue);
 
 						newPropertyStore.AddProperty(property,stringValue);
                         break;
@@ -89,7 +96,7 @@ public class PlayerGenerator : MonoBehaviour
                         floatValue = property.bag.numberValues[property.index];
                         property.IncrementIndex();
 
-						print($"{property.name} was generated with value {floatValue}");
+                        PrintPlayer(property, floatValue);
 
                         newPropertyStore.AddProperty(property, floatValue);
                         break;
@@ -102,9 +109,8 @@ public class PlayerGenerator : MonoBehaviour
 							{ boolValue = true; }
 						else
 							{ boolValue = false; }
-						
 
-                        print($"{property.name} was generated with value {boolValue}");
+                        PrintPlayer(property, boolValue);
 
                         newPropertyStore.AddProperty(property, boolValue);
                         break;
@@ -114,16 +120,55 @@ public class PlayerGenerator : MonoBehaviour
 
 		newPlayer.transform.parent = Queue.transform;
 
-		string PlayerName = "";
-		for (int i = 0; i < 5; i++)
-		{
-			PlayerName += (char)UnityEngine.Random.Range(65, 90);
-		}
+        string PlayerName = "";
+        //for (int i = 0; i < 5; i++)
+        //{
+        //	PlayerName += (char)UnityEngine.Random.Range(65, 90);
+        //}
+
+        if (UnityEngine.Random.Range(0, 100) > 75)
+        {
+            PlayerName += prefix.names[UnityEngine.Random.Range(0, prefix.names.Count)];
+        }
+
+        PlayerName += firstName.names[UnityEngine.Random.Range(0, firstName.names.Count)];
+
+        if (UnityEngine.Random.Range(0, 100) > 50)
+        {
+            PlayerName += secondName.names[UnityEngine.Random.Range(0, secondName.names.Count)];
+        }
+
+        if (UnityEngine.Random.Range(0, 100) > 75)
+        {
+            PlayerName += suffix.names[UnityEngine.Random.Range(0, suffix.names.Count)];
+        }
 
 
-		newPlayer.name = PlayerName;
+        newPlayer.name = PlayerName;
 		newItemData.name = PlayerName;
 	}
+
+	private void PrintPlayer(Property property, string value)
+	{
+		if (printDebug == true)
+		{
+            print($"{property.name} was generated with value {value}");
+        }
+    }
+	private void PrintPlayer(Property property, float value)
+	{
+        if (printDebug == true)
+        {
+            print($"{property.name} was generated with value {value}");
+        }
+    }
+	private void PrintPlayer(Property property, bool value)
+	{
+        if (printDebug == true)
+        {
+            print($"{property.name} was generated with value {value}");
+        }
+    }
 
 	private void SetupPlayer()
 	{
