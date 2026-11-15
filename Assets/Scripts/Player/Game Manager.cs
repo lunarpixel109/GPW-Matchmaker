@@ -1,4 +1,6 @@
+using System;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,6 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+	[SerializeField]
+	static public GameManager Instance;
+
 	[SerializeField]private LevelData previousLevel;
 	[SerializeField]private LevelData currentLevel;
 	[SerializeField]private LevelData nextLexel;
@@ -16,13 +21,28 @@ public class GameManager : MonoBehaviour
 
 	public int Score;
 	public float timer;
+	public bool pause;
+
+	private void Awake()
+	{
+		// makes this a singleton
+		if (Instance == null)
+		{
+			Instance = this;
+		}
+		else
+		{
+			print("xcxcxcxcxcxcxcxcxcxcxcxcxcxcxcxcxcxcxcx");
+			DestroyImmediate(this);
+		}
+	}
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
-		if (previousLevel != null)
+		if (previousLevel != null && currentLevel.carryPreviousLevelScoreOver == true)
 		{
-			Score = previousLevel.currentScore;
+				Score = previousLevel.currentScore;
 		}
 		else
 		{
@@ -35,38 +55,48 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Keyboard.current.spaceKey.wasPressedThisFrame)
+		if (Keyboard.current.pKey.wasPressedThisFrame)
 		{
-			Score++;
+			pause = !pause;
 		}
 
-
-		timer -= Time.deltaTime;
-
-		if (timer <= 0f)
+		if (!pause)
 		{
-			if (Score >= currentLevel.winScore)
+			if (Keyboard.current.spaceKey.wasPressedThisFrame)
 			{
-				print("win");
-				currentLevel.currentScore = Score;
+				Score++;
+			}
+			if (Keyboard.current.backspaceKey.wasPressedThisFrame)
+			{
+				Score--;
+			}
 
-				if (nextLexel != null)
+			timer -= Time.deltaTime;
+
+			if (timer <= 0f)
+			{
+				if (Score >= currentLevel.winScore)
 				{
-					SceneManager.LoadScene(nextLexel.scene.name);
+					//print("win");
+					currentLevel.currentScore = Score;
+
+					if (nextLexel != null)
+					{
+						SceneManager.LoadScene(nextLexel.scene.name);
+					}
+					else if (currentLevel.lastDay)
+					{
+						winScene.currentScore = Score;
+						SceneManager.LoadScene(winScene.scene.name);
+					}
 				}
-				else if (currentLevel.lastDay)
+				else
 				{
-					winScene.currentScore = Score;
-					SceneManager.LoadScene(winScene.scene.name);
+					//print("loser");
+					SceneManager.LoadScene(loseScene.name);
 				}
 			}
-			else
-			{
-				print("loser");
-                SceneManager.LoadScene(loseScene.name);
-            }
 		}
-
 
 	}
 

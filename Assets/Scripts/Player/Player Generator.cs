@@ -34,10 +34,16 @@ public class PlayerGenerator : MonoBehaviour
 
 	[SerializeField] private bool printDebug;
 
+	[SerializeField] private GameManager gameManager;
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
-		levelData = this.gameObject.GetComponent<GameManager>().GetCurrentLevelData();
+
+		gameManager = this.gameObject.GetComponent<GameManager>();
+
+        levelData = gameManager.GetCurrentLevelData();
+
 		playerPrefab = levelData.PlayerPrefab;
 
 		timer = levelData.playerGenerationCooldown;
@@ -66,7 +72,7 @@ public class PlayerGenerator : MonoBehaviour
 			GeneratePlayer();
 		}
 
-		timer -= Time.deltaTime;
+		if (!gameManager.pause) { timer -= Time.deltaTime; }
 	}
 
 	private void GeneratePlayer()

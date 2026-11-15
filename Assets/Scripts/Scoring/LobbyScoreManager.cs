@@ -124,7 +124,6 @@ namespace Scoring {
             for (int i = 0; i <= finalScoreLevels.Count - 2; ++i) {
                 if (score >= finalScoreLevels[i].lowerBound && score < finalScoreLevels[i+1].lowerBound) {
                     return finalScoreLevels[i];
-                    break;
                 } else if (i == finalScoreLevels.Count - 2) {
                     if (score >= finalScoreLevels[i + 1].lowerBound) {
                         return finalScoreLevels[i + 1];

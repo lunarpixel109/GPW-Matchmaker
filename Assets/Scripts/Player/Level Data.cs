@@ -13,6 +13,7 @@ public class LevelData : ScriptableObject
     public bool lastDay;
     public bool winLose;
 
+    public bool carryPreviousLevelScoreOver;
     public int StartingScore;
     public int winScore;
     public int currentScore;
