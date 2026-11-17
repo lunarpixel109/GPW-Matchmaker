@@ -6,8 +6,6 @@ public class Patience2D : MonoBehaviour
 {
     public PlayerPatience patience;
 
-    private Vector3 startPosition;
-
     public Image playerImage;
 
     private Color normalColour;
@@ -15,7 +13,6 @@ public class Patience2D : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        startPosition = transform.localPosition;
         normalColour = playerImage.color;
     }
 
@@ -25,7 +22,6 @@ public class Patience2D : MonoBehaviour
         if (patience == null)
         {
             playerImage.color = normalColour;
-            transform.localPosition = startPosition;
             return;
         }
 
@@ -57,11 +53,7 @@ public class Patience2D : MonoBehaviour
             float x = Random.Range(-shakeAmount, shakeAmount);
             float y = Random.Range(-shakeAmount, shakeAmount);
 
-            transform.localPosition = startPosition + new Vector3(x, y, 0);
-        }
-        else
-        {
-            transform.localPosition = startPosition;
+            transform.localPosition += new Vector3(x, y, 0);
         }
 
         if (patiencePercent <= 0.3f)
