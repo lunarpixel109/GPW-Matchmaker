@@ -8,16 +8,25 @@ public class PlayerPatience : MonoBehaviour
     public PlayerLeftNotification notificationPrefab;
     public Canvas notificationCanvas;
 
+    public GameManager gameManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentPatience = maxPatience;
+
+        gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isWaiting)
+        if (gameManager == null)
+        {
+            print("sad");
+        }
+
+        if (isWaiting && !gameManager.pause)
         {
             currentPatience -= Time.deltaTime;
             if (currentPatience <= 0f)

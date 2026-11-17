@@ -51,6 +51,15 @@ public class DragManager : MonoBehaviour
         Vector2 mouse = Mouse.current != null ? Mouse.current.position.ReadValue() : Vector2.zero;
 
         ghost2DPlayer = Instantiate(ghostPrefab, canvasRoot);
+
+        //Connecting the 2D patience visuals to the original patience on the 3D player.
+        //Means that the 2D icon can shake and flash based on the existing patience, rather than creating a new countdown. - PD
+        Patience2D patienceVisual = ghost2DPlayer.GetComponent<Patience2D>();
+        if (patienceVisual != null && from != null)
+        {
+           patienceVisual.patience = from.GetComponent<PlayerPatience>();
+        }
+
         ghost2DPlayer.sprite = data.icon;
         ghost2DPlayer.color = data.colour;
         ghost2DPlayer.transform.position = mouse;

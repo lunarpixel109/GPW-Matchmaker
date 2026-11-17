@@ -21,6 +21,7 @@ namespace Scoring {
         public InputAction forceScoring;
 
         public int currentCCU = 10000;
+        public GameManager gameManager;
 
         private void Start() {
 
@@ -40,7 +41,7 @@ namespace Scoring {
 
         private void UpdateAndShowScore(FinalScoreLevel ccuChange, Transform lobby) {
             // 1. Update the player score (stored in here for now)
-            currentCCU += ccuChange.valueChange;
+            gameManager.Score += ccuChange.valueChange;
 
             // 2. Show new score on main score text
             overallScoreText.text = currentCCU.ToString();

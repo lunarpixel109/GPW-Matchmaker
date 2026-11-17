@@ -107,11 +107,14 @@ public class PatienceVisuals : MonoBehaviour
         // Red flashing
         if (patiencePercent <= 0.3f)
         {
+
             float flashSpeed =
                 Mathf.Lerp(4f, 9f, Mathf.InverseLerp(0.3f, 0f, patiencePercent));
 
+            float t = flashSpeed + Time.deltaTime;
+
             float flash =
-                (Mathf.Sin(Time.time * flashSpeed) + 1f) / 2f;
+                Mathf.PingPong(t, 1f);
 
             characterMaterial.color =
                 Color.Lerp(originalColour, Color.red, flash);

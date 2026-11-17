@@ -27,6 +27,8 @@ public class SteeringAgent : MonoBehaviour {
 
     private bool _IsIdle = false;
 
+    private GameManager gameManager;
+
     private void OnEnable() {
         if (queueFloor == null) {
             enabled = false; // not placed yet
@@ -39,6 +41,8 @@ public class SteeringAgent : MonoBehaviour {
         _IsIdle = false;
         targetPosition = SteeringHelper.GetTargetPosition(queueFloor);
         SetSeekEnabled(true);
+
+        gameManager = GameManager.Instance;
     }
 
     private void Update() {
@@ -56,10 +60,13 @@ public class SteeringAgent : MonoBehaviour {
 
             return;
         }
-
         CooperativeArbitration();
-        UpdatePosition();
-        UpdateDirection();
+
+        if (!gameManager.pause)
+        {
+            UpdatePosition();
+            UpdateDirection();
+        }
 
         if (SteeringHelper.IsAtTarget(transform.position, targetPosition)) {
             SetSeekEnabled(false);
