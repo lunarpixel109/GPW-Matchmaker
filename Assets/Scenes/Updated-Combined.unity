@@ -6826,6 +6826,7 @@ GameObject:
   - component: {fileID: 1597045661}
   - component: {fileID: 1597045660}
   - component: {fileID: 1597045662}
+  - component: {fileID: 1597045663}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -6905,6 +6906,7 @@ MonoBehaviour:
     m_Flags: 0
     m_Priority: 0
   currentCCU: 10000
+  gameManager: {fileID: 1597045663}
 --- !u!4 &1597045661
 Transform:
   m_ObjectHideFlags: 0
@@ -6932,17 +6934,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f110b5b733b2cc4dacd40c976e4ed19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerGenerator
-  timerMax: 0.5
-  playerPrefab: {fileID: 8623792663999120262, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+  levelData: {fileID: 0}
   playerSpriteDefalt: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   Queue: {fileID: 15580238}
   Lobbies:
   - {fileID: 471755199}
-  properties:
-  - {fileID: 11400000, guid: 88c452bb4eeab8f348156e656841ced9, type: 2}
-  - {fileID: 11400000, guid: f2c8a6f2759a47d02a4e5822dfa59e57, type: 2}
-  - {fileID: 11400000, guid: 01945e66fddb2d03ba058c5a3a7e9fe6, type: 2}
   indexes: 
+  prefix: {fileID: 0}
+  firstName: {fileID: 0}
+  secondName: {fileID: 0}
+  suffix: {fileID: 0}
+  printDebug: 0
+  gameManager: {fileID: 1597045663}
+--- !u!114 &1597045663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597045659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a628e938c311f54db72a0a3e7ccae03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  previousLevel: {fileID: 0}
+  currentLevel: {fileID: 11400000, guid: d34da8ef285e03b4d846d1a8911c2a05, type: 2}
+  nextLexel: {fileID: 11400000, guid: 8ea11f4cf8a973b4a9c48c1d72467204, type: 2}
+  winScene: {fileID: 11400000, guid: 3b6aebf19410eab4eba775f0dd190502, type: 2}
+  loseScene: {fileID: 11400000, guid: fdab5782c4ed67340b20e5aaa8d619cc, type: 2}
+  Score: 0
+  timer: 0
+  pause: 0
 --- !u!1 &1618955396
 GameObject:
   m_ObjectHideFlags: 0
