@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff14c8ccaa2bdf42a5915fd8f9be85c, type: 3}
+  m_Name: 0. Bot Processor
+  m_EditorClassIdentifier: Assembly-CSharp::CardProperties
+  <cardID>k__BackingField: 0
+  <cardName>k__BackingField: Bot Processor
+  <cardDescription>k__BackingField: Allows you to place bots into a lobby to fill
+    slots but reduces total score by 10% per bot used.
+  <Icon>k__BackingField: {fileID: 769151662, guid: f7b36978a2ad1494da17a9c61329fc1f, type: 3}
