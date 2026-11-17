@@ -151,7 +151,8 @@ public class PlayerGenerator : MonoBehaviour
 
 
         newPlayer.name = PlayerName;
-		newItemData.name = PlayerName;
+        newItemData.name = PlayerName;
+		newItemData.displayName = PlayerName;
 	}
 
 	private void PrintPlayer(Property property, string value)

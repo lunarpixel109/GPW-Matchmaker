@@ -12,10 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a3f575b8-956c-45ce-9a67-9aed2438d398" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GPW-Matchmaker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GPW-Matchmaker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Start Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Start Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Game Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Game Manager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Player Generator.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +28,12 @@
     &quot;assignee&quot;: &quot;ImJammieTbh&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/lunarpixel109/GPW-Matchmaker.git",
-    "accountId": "bb4372d1-3534-4f83-a08c-450a9303b4e5"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/lunarpixel109/GPW-Matchmaker.git&quot;,
+    &quot;accountId&quot;: &quot;bb4372d1-3534-4f83-a08c-450a9303b4e5&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMoveing/Arrival.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMoveing/PlayerAvoid.cs" root0="FORCE_HIGHLIGHTING" />
