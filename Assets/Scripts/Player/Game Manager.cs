@@ -58,6 +58,12 @@ public class GameManager : MonoBehaviour
 		if (Keyboard.current.pKey.wasPressedThisFrame)
 		{
 			pause = !pause;
+			if (!pause) {
+				Time.timeScale = 0;
+			}
+			else {
+				Time.timeScale = 1;
+			}
 		}
 
 		if (!pause)
