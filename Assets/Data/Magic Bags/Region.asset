@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagicBag
   numberValues: []
   stringValues:
-  - Oceania
-  - Oceania
-  - North America
-  - South America
-  - Asia
-  - Africa
-  - Europe
-  - Europe
-  - Europe
-  - Africa
-  - Asia
+  - N
+  - N
+  - NE
+  - NE
+  - S
+  - S
+  - NW
+  - NW
+  - NW
+  - S
+  - S
+  - SW

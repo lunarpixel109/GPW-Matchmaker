@@ -3154,9 +3154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scoring.OverallScoreManager
   scoreConditions:
   - property: {fileID: 11400000, guid: f2c8a6f2759a47d02a4e5822dfa59e57, type: 2}
-    excellentBounds: 50
-    goodBounds: 100
-    okBounds: 150
+    excellentBounds: 100
+    goodBounds: 200
+    okBounds: 300
   - property: {fileID: 11400000, guid: 01945e66fddb2d03ba058c5a3a7e9fe6, type: 2}
     excellentBounds: 100
     goodBounds: 150
