@@ -64,9 +64,25 @@ namespace Scoring {
                 PropertyValue aVal = a.GetPropertyValue(condition.property);
                 PropertyValue bVal = b.GetPropertyValue(condition.property);
                 switch (condition.property.propertyType) {
-                    case PropertyType.String:
+
                     case PropertyType.Number:
                         float difference = Mathf.Abs(aVal.NumberValue - bVal.NumberValue);
+                        if (difference > condition.okBounds) {
+                            scoreLevels.Add(ScoreLevel.Bad);
+                        } else if (difference <= condition.okBounds && difference > condition.goodBounds) {
+                            scoreLevels.Add(ScoreLevel.OK);
+                        } else if (difference <= condition.goodBounds && difference > condition.excellentBounds) {
+                            scoreLevels.Add(ScoreLevel.Good);
+                        } else if (difference > condition.excellentBounds) {
+                            scoreLevels.Add(ScoreLevel.Excellent);
+                        } else if (difference == 0) {
+                            scoreLevels.Add(ScoreLevel.Perfect);
+                        }
+                        break;
+                    case PropertyType.String:
+                        float directDifference = Mathf.Abs(aVal.NumberValue - bVal.NumberValue);
+                        difference = Mathf.Min(directDifference,
+                            condition.property.validStrings.Count - directDifference);
                         if (difference > condition.okBounds) {
                             scoreLevels.Add(ScoreLevel.Bad);
                         } else if (difference <= condition.okBounds && difference > condition.goodBounds) {
