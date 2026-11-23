@@ -5,10 +5,7 @@ public class PlayerPatience : MonoBehaviour
     public float maxPatience;
     public float currentPatience;
     public bool isWaiting = true;
-    public PlayerLeftNotification notificationPrefab;
-    public Canvas notificationCanvas;
-    public Camera roomCamera;
-    public RectTransform roomWindow;
+    public PlayerLeftNotification notificationPanel;
 
     public GameManager gameManager;
 
@@ -19,8 +16,7 @@ public class PlayerPatience : MonoBehaviour
 
         gameManager = GameManager.Instance;
 
-        roomCamera = GameObject.Find("3D-room-camera").GetComponent<Camera>();
-        roomWindow = GameObject.Find("3D-window").GetComponent<RectTransform>();
+        notificationPanel = FindFirstObjectByType<PlayerLeftNotification>(FindObjectsInactive.Include);
     }
 
     // Update is called once per frame
@@ -46,43 +42,10 @@ public class PlayerPatience : MonoBehaviour
     {
         isWaiting = false;
 
-        if (notificationPrefab != null && notificationCanvas != null)
+        // Display the players gamertag in the panel
+        if (notificationPanel != null)
         {
-            // Find the players position in the waiting room
-            Vector3 viewportPosition = roomCamera.WorldToViewportPoint(transform.position + Vector3.up * 1f);
-
-            // Only show the notification if the player is visible
-            if (viewportPosition.z > 0f &&
-               viewportPosition.x >= 0f && viewportPosition.x <= 1f &&
-               viewportPosition.y >= 0f && viewportPosition.y <= 1f)
-            {
-                // Convert the position into the waiting room window
-                Vector2 windowPosition = new Vector2(
-                    (viewportPosition.x - 0.5f) * roomWindow.rect.width,
-                    (viewportPosition.y - 0.5f) * roomWindow.rect.height
-                    );
-
-
-                Vector3 worldPosition = roomWindow.TransformPoint(windowPosition);
-
-                //Convert into the canvas coordinates
-                Camera uiCamera = notificationCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : notificationCanvas.worldCamera;
-
-                Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(uiCamera, worldPosition);
-
-                RectTransform canvasRect = notificationCanvas.GetComponent<RectTransform>();
-
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPosition, uiCamera, out Vector2 localPosition);
-
-                // Create and position the notification
-                PlayerLeftNotification notification = Instantiate(notificationPrefab, notificationCanvas.transform);
-
-                RectTransform notificationRect = notification.GetComponent<RectTransform>();
-
-                notificationRect.anchoredPosition = localPosition + new Vector2(0f, -35f);
-
-                notification.ShowNotification();
-            }
+            notificationPanel.ShowNotification(gameObject.name);
         }
 
         PatienceVisuals visuals = GetComponent<PatienceVisuals>();

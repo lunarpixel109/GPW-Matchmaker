@@ -4,27 +4,35 @@ using UnityEngine;
 
 public class PlayerLeftNotification : MonoBehaviour
 {
-    public float displayDuration = 2f;
+    public float displayDuration = 1.5f;
 
-    private TMP_Text notificationText;
+    [SerializeField] private TMP_Text notificationText;
+
+    private Coroutine hideCoroutine;
 
     void Awake()
     {
-        notificationText = GetComponent<TMP_Text>();
-        notificationText.enabled = false;
+        gameObject.SetActive(false);
     }
 
-    public void ShowNotification()
+    public void ShowNotification(string playerName)
     {
-        notificationText.enabled = true;
+        gameObject.SetActive(true);
 
-        StartCoroutine(HideNotification());
+        notificationText.text = playerName + " Left!";
+
+        if (hideCoroutine != null)
+        {
+            StopCoroutine(hideCoroutine);
+        }
+        hideCoroutine = StartCoroutine(HideNotification());
     }
 
     IEnumerator HideNotification()
     {
         yield return new WaitForSeconds(displayDuration);
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        hideCoroutine = null;
     }
 }
