@@ -12,10 +12,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a3f575b8-956c-45ce-9a67-9aed2438d398" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GPW-Matchmaker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GPW-Matchmaker/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Level Data/Week10-Com1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Level Data/Week10-Com1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Player Generator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Player Generator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMoving/PlayerAvoid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMoving/PlayerAvoid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerMoving/SteeringAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerMoving/SteeringAgent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/tileable background image.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/tileable background image.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Week10-Combined.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Week10-Combined.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +36,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMoveing/Arrival.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMoveing/PlayerAvoid.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMoveing/Seek.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMoveing/SteeringBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Scoring/OverallScoreManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/jamie/Code/GPW-Matchmaker/Assets/Scripts/PlayerMoveing/Arrival.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TiledScrollingBackground.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -131,7 +125,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "SteeringBehavioursRework",
+    "git-widget-placeholder": "ScrollingBackground",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
