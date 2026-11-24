@@ -58,7 +58,5 @@ public class PlayerPatience : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        Debug.Log("Player has left matchmaking!");
     }
 }

@@ -25,8 +25,6 @@ public class PlayerWarnings : MonoBehaviour
     {
         if (target == null) return;
 
-        Debug.Log("Player world position: " + target.position);
-
         Vector3 viewportPosition = roomCamera.WorldToViewportPoint(target.position + offset);
 
         // Hide the warning symbols when the player is not in the camera view
