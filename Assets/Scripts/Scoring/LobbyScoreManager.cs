@@ -60,6 +60,7 @@ namespace Scoring {
             int maxScore = 0;
 
             foreach (ScoreCondition condition in scoreConditions) {
+                Debug.Log($"Trying to score {condition.property.name}");
                 maxScore += 4;
                 PropertyValue aVal = a.GetPropertyValue(condition.property);
                 PropertyValue bVal = b.GetPropertyValue(condition.property);
@@ -69,30 +70,55 @@ namespace Scoring {
                         float difference = Mathf.Abs(aVal.NumberValue - bVal.NumberValue);
                         if (difference > condition.okBounds) {
                             scoreLevels.Add(ScoreLevel.Bad);
+                            Debug.Log($"{condition.property.name} scored bad");
                         } else if (difference <= condition.okBounds && difference > condition.goodBounds) {
                             scoreLevels.Add(ScoreLevel.OK);
+                            Debug.Log($"{condition.property.name} scored ok");
                         } else if (difference <= condition.goodBounds && difference > condition.excellentBounds) {
                             scoreLevels.Add(ScoreLevel.Good);
+                            Debug.Log($"{condition.property.name} scored good");
                         } else if (difference > condition.excellentBounds) {
                             scoreLevels.Add(ScoreLevel.Excellent);
+                            Debug.Log($"{condition.property.name} scored excellent");
                         } else if (difference == 0) {
                             scoreLevels.Add(ScoreLevel.Perfect);
+                            Debug.Log($"{condition.property.name} scored perfect");
+                        } else {
+                            Debug.Log($"What the actual fuck {condition.property.name}");
                         }
                         break;
                     case PropertyType.String:
-                        float directDifference = Mathf.Abs(aVal.NumberValue - bVal.NumberValue);
-                        difference = Mathf.Min(directDifference,
-                            condition.property.validStrings.Count - directDifference);
-                        if (difference > condition.okBounds) {
+                        difference = Mathf.Abs(aVal.NumberValue - bVal.NumberValue);
+                        //difference = Mathf.Min(directDifference,
+                        //    condition.property.validStrings.Count - directDifference);
+                        if (difference > condition.okBounds)
+                        {
                             scoreLevels.Add(ScoreLevel.Bad);
-                        } else if (difference <= condition.okBounds && difference > condition.goodBounds) {
+                            Debug.Log($"{condition.property.name} scored bad");
+                        }
+                        else if (difference <= condition.okBounds && difference > condition.goodBounds)
+                        {
                             scoreLevels.Add(ScoreLevel.OK);
-                        } else if (difference <= condition.goodBounds && difference > condition.excellentBounds) {
+                            Debug.Log($"{condition.property.name} scored ok");
+                        }
+                        else if (difference <= condition.goodBounds && difference > condition.excellentBounds)
+                        {
                             scoreLevels.Add(ScoreLevel.Good);
-                        } else if (difference > condition.excellentBounds) {
+                            Debug.Log($"{condition.property.name} scored good");
+                        }
+                        else if (difference > condition.excellentBounds)
+                        {
                             scoreLevels.Add(ScoreLevel.Excellent);
-                        } else if (difference == 0) {
+                            Debug.Log($"{condition.property.name} scored excellent");
+                        }
+                        else if (difference == 0)
+                        {
                             scoreLevels.Add(ScoreLevel.Perfect);
+                            Debug.Log($"{condition.property.name} scored perfect");
+                        }
+                        else
+                        {
+                            Debug.Log($"What the actual fuck {condition.property.name}");
                         }
                         break;
                     case PropertyType.Bool:
@@ -103,6 +129,8 @@ namespace Scoring {
                         }
                         break;
                 }
+
+                
             }
 
             float totalScore = 0;
@@ -110,6 +138,7 @@ namespace Scoring {
                 totalScore += (int)scoreLevel;
             }
 
+            Debug.Log($"Individual Score between {a.name} and {b.name}: {totalScore / maxScore}");
             return totalScore / maxScore;
 
         }
@@ -126,7 +155,7 @@ namespace Scoring {
                 overallScore += ScoreMatch(playerProperties[i].occupant.data.propertyStore, playerProperties[i + 1].occupant.data.propertyStore, conditions);
                 maxScore += 2;
             }
-            Debug.Log(overallScore / maxScore);
+            Debug.Log($"Final Score is: {overallScore / maxScore}");
             
             
             return overallScore / maxScore;

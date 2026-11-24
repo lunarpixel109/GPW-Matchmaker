@@ -26,8 +26,8 @@ MonoBehaviour:
   - N
   - S
   - SE
-  - NW
-  - NW
+  - NE
+  - NE
   - S
   - S
   - E
@@ -35,10 +35,10 @@ MonoBehaviour:
   - NE
   - E
   - SE
-  - NW
+  - NE
   - SE
   - E
-  - NW
+  - NE
   - E
   - N
   - E
@@ -46,3 +46,6 @@ MonoBehaviour:
   - N
   - NE
   - N
+  propertiesFile: {fileID: 4900000, guid: c3a121b018ee7c84b9c75471fd4e53c2, type: 3}
+  column: 1
+  isStringValues: 1

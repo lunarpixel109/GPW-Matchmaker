@@ -24,6 +24,11 @@ public class Property : ScriptableObject {
 	[field: SerializeField] public int index { get; private set; }
 	
 
+	public void SetIndex(int newIndex)
+	{
+		index = newIndex;
+	}
+
 	public void IncrementIndex()
 	{
 		int indexMax = 0;

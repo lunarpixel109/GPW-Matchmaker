@@ -3404,10 +3404,10 @@ MonoBehaviour:
     excellentBounds: 100
     goodBounds: 200
     okBounds: 300
-  - property: {fileID: 11400000, guid: 01945e66fddb2d03ba058c5a3a7e9fe6, type: 2}
-    excellentBounds: 100
-    goodBounds: 150
-    okBounds: 200
+  - property: {fileID: 11400000, guid: 88c452bb4eeab8f348156e656841ced9, type: 2}
+    excellentBounds: 1
+    goodBounds: 2
+    okBounds: 3
   scoreTextPrefab: {fileID: 3392579282721610367, guid: 07a55bf6235824c6cb694fb0caa22211, type: 3}
   overallScoreText: {fileID: 2124288786}
   transformOffsetToLobby: {x: -221, y: 500}
@@ -3495,6 +3495,7 @@ MonoBehaviour:
   - {fileID: 849932151}
   - {fileID: 290401729}
   indexes: 
+  indexOverride: 0
   prefix: {fileID: 11400000, guid: ba70fbd99711e2d48835662371bddd7e, type: 2}
   firstName: {fileID: 11400000, guid: a0d238ef13fcb05478a87a3d7372ccf6, type: 2}
   secondName: {fileID: 11400000, guid: c31ad5b195ae62c44868721bd9f0e693, type: 2}

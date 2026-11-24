@@ -22,6 +22,7 @@ public class PlayerGenerator : MonoBehaviour
 	private GameObject[] Lobbies;
 
 	[SerializeField] private List<int> indexes;
+	[SerializeField] private int indexOverride;
 
 	GameObject newPlayer;
 	ItemData newItemData;
@@ -51,14 +52,16 @@ public class PlayerGenerator : MonoBehaviour
 		indexes = new List<int>();
 		foreach (Property property in levelData.properties)
 		{
-			if (property.propertyType == PropertyType.Number)
-			{
-				indexes.Add(Random.Range(0, property.bag.numberValues.Count));
-			}
-			else if (property.propertyType == PropertyType.String)
-			{
-				indexes.Add(Random.Range(0, property.bag.stringValues.Count));
-			}
+			//if (property.propertyType == PropertyType.Number)
+			//{
+			//	indexes.Add(Random.Range(0, property.bag.numberValues.Count));
+			//}
+			//else if (property.propertyType == PropertyType.String)
+			//{
+			//	indexes.Add(Random.Range(0, property.bag.stringValues.Count));
+			//}
+
+			property.SetIndex(indexOverride);
 		}
 	}
 
