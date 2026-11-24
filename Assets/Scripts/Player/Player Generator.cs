@@ -180,7 +180,7 @@ public class PlayerGenerator : MonoBehaviour
 	private void SetupPlayer()
 	{
         Vector3 randPos = Queue.transform.position;
-        randPos += new Vector3(Random.Range(-5, 5), 0.5f, Random.Range(-5, 5));
+        randPos += new Vector3(Random.Range(-3, 3), 0.5f, Random.Range(-5, -4.5f));
 
         int rand = Random.Range(0, playerPrefabs.Count);
         

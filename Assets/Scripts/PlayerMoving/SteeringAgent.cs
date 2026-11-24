@@ -39,7 +39,7 @@ public class SteeringAgent : MonoBehaviour {
         steeringVelocity = Vector3.zero;
         _idleTimerUpdate = 0f;
         _IsIdle = false;
-        targetPosition = SteeringHelper.GetTargetPosition(queueFloor);
+        targetPosition = new Vector3(queueFloor.transform.position.x, 0.5f, queueFloor.transform.position.z);
         SetSeekEnabled(true);
 
         gameManager = GameManager.Instance;
