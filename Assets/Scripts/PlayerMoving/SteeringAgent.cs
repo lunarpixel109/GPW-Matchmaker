@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PlayerMoveing;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SteeringAgent : MonoBehaviour {
     public float maxCurrentSpeed;
@@ -13,6 +14,8 @@ public class SteeringAgent : MonoBehaviour {
     public Vector3 currentVelocity;
 
     public Vector3 steeringVelocity;
+    
+    public bool IsIdle => _IsIdle;
 
     private List<SteeringBehaviour> steeringBehvaiours = new List<SteeringBehaviour>();
 
@@ -27,6 +30,11 @@ public class SteeringAgent : MonoBehaviour {
 
     private bool _IsIdle = false;
 
+    public float giveUpTimer = 3f;
+    private float _seekTimer = 0f;
+    
+    private PlayerAvoid _avoid;
+
     private GameManager gameManager;
 
     private void OnEnable() {
@@ -34,12 +42,14 @@ public class SteeringAgent : MonoBehaviour {
             enabled = false; // not placed yet
             return;
         }
+        
+        _avoid = GetComponent<PlayerAvoid>();
 
         currentVelocity = Vector3.zero;
         steeringVelocity = Vector3.zero;
         _idleTimerUpdate = 0f;
         _IsIdle = false;
-        targetPosition = new Vector3(queueFloor.transform.position.x, 0.5f, queueFloor.transform.position.z);
+        targetPosition = new Vector3(queueFloor.transform.position.x + RandomInRanges(-2,2,-2,2), 0.5f, queueFloor.transform.position.z + Random.Range(-3,3));
         SetSeekEnabled(true);
 
         gameManager = GameManager.Instance;
@@ -47,6 +57,12 @@ public class SteeringAgent : MonoBehaviour {
 
     private void Update() {
         if (_IsIdle) {
+            if (_avoid != null) {
+                Vector3 pushAway = SteeringHelper.LimitVector(_avoid.GetBubblePush(), 1.0f) * Time.deltaTime;
+                transform.position += pushAway;
+                targetPosition += pushAway;
+            }
+            
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, settleTime);
 
             _idleTimerUpdate += Time.deltaTime;
@@ -68,10 +84,18 @@ public class SteeringAgent : MonoBehaviour {
             UpdatePosition();
             UpdateDirection();
         }
+        
+        _seekTimer += Time.deltaTime;
+        
+        float dist = Vector3.Distance(transform.position, targetPosition);
+        bool clostAndSlow = dist < 0.4f && currentVelocity.magnitude > 0.1f;
 
-        if (SteeringHelper.IsAtTarget(transform.position, targetPosition)) {
+        if (SteeringHelper.IsAtTarget(transform.position, targetPosition) || clostAndSlow || _seekTimer > giveUpTimer) {
+            _seekTimer = 0f;
+            targetPosition = transform.position;
             SetSeekEnabled(false);
             steeringVelocity = Vector3.zero;
+            currentVelocity = Vector3.zero;
             _IsIdle = true;
         }
     }
@@ -141,5 +165,16 @@ public class SteeringAgent : MonoBehaviour {
         {
             if (b.enabled) b.DrawDebug(this);
         }
+    }
+    
+    private static float RandomInRanges(float minA, float maxA, float minB, float maxB)
+    {
+        float widthA = maxA - minA;
+        float widthB = maxB - minB;
+
+        float roll = Random.Range(0f, widthA + widthB);
+        return roll < widthA
+            ? minA + roll
+            : minB + (roll - widthA);
     }
 }

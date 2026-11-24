@@ -180,7 +180,7 @@ public class PlayerGenerator : MonoBehaviour
 	private void SetupPlayer()
 	{
         Vector3 randPos = Queue.transform.position;
-        randPos += new Vector3(Random.Range(-3, 3), 0.5f, Random.Range(-5, -4.5f));
+        randPos += new Vector3(RandomInRanges(-3,-2,2,3), 0.5f, Random.Range(-5, -4.5f));
 
         int rand = Random.Range(0, playerPrefabs.Count);
         
@@ -199,4 +199,15 @@ public class PlayerGenerator : MonoBehaviour
 		//newItemData.colour = new Color(Random.Range(0,255), Random.Range(0, 255), Random.Range(0, 255));
 
     }
+
+	private static float RandomInRanges(float minA, float maxA, float minB, float maxB)
+	{
+		float widthA = maxA - minA;
+		float widthB = maxB - minB;
+
+		float roll = Random.Range(0f, widthA + widthB);
+		return roll < widthA
+			? minA + roll
+			: minB + (roll - widthA);
+	}
 }
