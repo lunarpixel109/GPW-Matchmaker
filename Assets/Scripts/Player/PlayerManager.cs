@@ -80,7 +80,7 @@ public class PlayerManager : MonoBehaviour
     private void Initialize() {
         var rend = GetComponent<Renderer>();
 
-        _playerPatience.notificationCanvas = canvas;
+        //_playerPatience.notificationCanvas = canvas;
         _patienceVisuals.patience = _playerPatience;
         _patienceVisuals.characterVisual = transform;
         _patienceVisuals.characterRenderer = rend;

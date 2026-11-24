@@ -12,14 +12,33 @@ public class PatienceVisuals : MonoBehaviour
     public Material characterMaterial;
     private Color originalColour;
     public TMP_Text warningText;
+    public TMP_Text warningPrefab;
+    public Canvas warningCanvas;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (warningCanvas == null)
+        {
+            warningCanvas = GameObject.Find("Canvas")?.GetComponent<Canvas>();
+        }
+
         startPosition = characterVisual.localPosition;
 
         characterMaterial = characterRenderer.material;
         originalColour = characterMaterial.color;
+
+        // Create a warning symbl for the player on the UI canvas
+        if (warningPrefab != null && warningCanvas != null)
+        {
+            warningText = Instantiate(warningPrefab, warningCanvas.transform);
+
+            // Make the warning symbol follow the character
+            PlayerWarnings playerWarning = warningText.gameObject.AddComponent<PlayerWarnings>();
+            playerWarning.target = transform;
+            playerWarning.roomCamera = GameObject.Find("3D-room-camera").GetComponent<Camera>();
+            playerWarning.roomWindow = GameObject.Find("3D-window").GetComponent<RectTransform>();
+        }
 
         if (warningText != null)
         {
@@ -53,7 +72,7 @@ public class PatienceVisuals : MonoBehaviour
 
                 float pulse = 1f + Mathf.Sin(Time.time * 6f) * 0.1f;
                 warningText.transform.localScale =
-                    Vector3.one * 0.2f * pulse;
+                    Vector3.one * pulse;
             }
             else if (patiencePercent <= 0.45f)
             {
@@ -63,7 +82,7 @@ public class PatienceVisuals : MonoBehaviour
                 warningText.color = new Color(1f, 0.65f, 0f, 1f);
                 warningText.alpha = 1f;
 
-                warningText.transform.localScale = Vector3.one * 0.2f;
+                warningText.transform.localScale = Vector3.one;
             }
             else
             {
@@ -194,5 +213,11 @@ public class PatienceVisuals : MonoBehaviour
         Destroy(gameObject);
     }
 
-
+    void OnDestroy()
+    {
+        if (warningText != null)
+        {
+            Destroy(warningText.gameObject);
+        }
+    }
 }

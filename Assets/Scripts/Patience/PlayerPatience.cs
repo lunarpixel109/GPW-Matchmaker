@@ -5,8 +5,7 @@ public class PlayerPatience : MonoBehaviour
     public float maxPatience;
     public float currentPatience;
     public bool isWaiting = true;
-    public PlayerLeftNotification notificationPrefab;
-    public Canvas notificationCanvas;
+    public PlayerLeftNotification notificationPanel;
 
     public GameManager gameManager;
 
@@ -16,6 +15,8 @@ public class PlayerPatience : MonoBehaviour
         currentPatience = maxPatience;
 
         gameManager = GameManager.Instance;
+
+        notificationPanel = FindFirstObjectByType<PlayerLeftNotification>(FindObjectsInactive.Include);
     }
 
     // Update is called once per frame
@@ -41,27 +42,10 @@ public class PlayerPatience : MonoBehaviour
     {
         isWaiting = false;
 
-        if (notificationPrefab != null && notificationCanvas != null)
+        // Display the players gamertag in the panel
+        if (notificationPanel != null)
         {
-            Vector3 worldPosition = transform.position + Vector3.up * 2f;
-
-            Vector3 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
-
-            if (screenPosition.z > 0f)
-            {
-                PlayerLeftNotification notification = Instantiate(notificationPrefab, notificationCanvas.transform);
-
-                RectTransform canvasRect = notificationCanvas.GetComponent<RectTransform>();
-
-                RectTransform notificationRect = notification.GetComponent<RectTransform>();
-
-                Camera uiCamera = notificationCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : notificationCanvas.worldCamera;
-
-                RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRect, screenPosition, uiCamera, out Vector2 localPosition);
-
-                notificationRect.anchoredPosition = localPosition + new Vector2(0f, -35f);
-                notification.ShowNotification();
-            }
+            notificationPanel.ShowNotification(gameObject.name);
         }
 
         PatienceVisuals visuals = GetComponent<PatienceVisuals>();
