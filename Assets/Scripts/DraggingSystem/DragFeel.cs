@@ -2,7 +2,7 @@ using UnityEngine;
 
 /// <summary>
 /// A tweakable "feel" profile. Create assets via Assets > Create > Drag > Drag Feel
-/// (Light, Normal, Heavy...) and assign one to an ItemData. Replaces HeavyDraggable's mass/baseSpeed.
+/// (Light, Normal, Heavy...) and assign one to an ItemData. Replaces HeavyDraggable's mass/baseSpeed. :)
 /// </summary>
 [CreateAssetMenu(menuName = "Drag/Drag Feel", fileName = "NewDragFeel")]
 public class DragFeel : ScriptableObject

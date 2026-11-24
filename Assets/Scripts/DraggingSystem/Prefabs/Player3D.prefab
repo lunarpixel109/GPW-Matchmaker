@@ -352,6 +352,7 @@ MonoBehaviour:
   isWaiting: 1
   notificationPrefab: {fileID: 6309180098329515368, guid: fb70bb9383419dc41ac3674b23fbb450, type: 3}
   notificationCanvas: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!114 &2219396587529085714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +370,8 @@ MonoBehaviour:
   characterRenderer: {fileID: 0}
   characterMaterial: {fileID: 2100000, guid: b82c2f2cd14028d40bb8e587fd9969fb, type: 2}
   warningText: {fileID: 0}
+  warningPrefab: {fileID: 7592773170413887060, guid: c16bfc1d37db0f34c99c89eeea32a9e2, type: 3}
+  warningCanvas: {fileID: 0}
 --- !u!114 &8047163186962485038
 MonoBehaviour:
   m_ObjectHideFlags: 0
