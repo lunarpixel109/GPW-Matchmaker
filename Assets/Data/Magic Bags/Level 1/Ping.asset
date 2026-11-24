@@ -12,7 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095fe71f53827cf47a43c70509682a47, type: 3}
   m_Name: Ping
   m_EditorClassIdentifier: Assembly-CSharp::MagicBag
-  numberValues: []
+  numberValues:
+  - 50
+  - 58
+  - 72
+  - 71
+  - 10
+  - 39
+  - 79
+  - 79
+  - 76
+  - 49
+  - 89
+  - 63
   stringValues: []
+  propertiesFile: {fileID: 4900000, guid: c3a121b018ee7c84b9c75471fd4e53c2, type: 3}
   column: 0
   isStringValues: 0

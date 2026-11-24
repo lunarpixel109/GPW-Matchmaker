@@ -8,48 +8,43 @@ using System;
 [CreateAssetMenu(fileName = "MagicBag", menuName = "Scriptable Objects/MagicBag")]
 public class MagicBag : ScriptableObject
 {
-    public List<float> numberValues;
+	public List<float> numberValues;
 
-    public List<string> stringValues;
+	public List<string> stringValues;
 
-    public FilePathAttribute propertiesFile;
+	public TextAsset propertiesFile;
 
-    [SerializeField] private int column;
+	[SerializeField] private int column;
 
-    [SerializeField] private bool isStringValues;
+	[SerializeField] private bool isStringValues;
 
-    private void OnValidate()
-    {
-        stringValues.Clear();
-        numberValues.Clear();
+	private void OnValidate()
+	{
+		stringValues.Clear();
+		numberValues.Clear();
 
-        
-        StreamReader reader = new StreamReader(propertiesFile.ToString());
-        int lineNumber = 0;
+		//StreamReader reader = new StreamReader(propertiesFile.text);
+		int lineNumber = 0;
 
-        while (true)
-        {
-            string data = reader.ReadLine();
-            if (data == null)
-            {
-                break;
-            }
+		//string data = reader.ReadLine();
+		string data = propertiesFile.text;
 
-            var values = data.Split(',');
+		var lines = data.Split('\n');
+		foreach (var line in lines)
+		{
+            var values = line.Split(',');
 
             if (lineNumber == 0)
             {
                 lineNumber++;
-                continue;
             }
-            if (lineNumber == 1)
+            else if (lineNumber == 1)
             {
                 if (values[column] == "Strings") { isStringValues = true; }
                 else { isStringValues = false; }
                 lineNumber++;
-                continue;
             }
-            if (lineNumber > 1)
+            else
             {
                 if (isStringValues)
                 {
@@ -60,7 +55,7 @@ public class MagicBag : ScriptableObject
                     numberValues.Add(float.Parse(values[column]));
                 }
             }
+
         }
-        
-    }
+	}
 }
