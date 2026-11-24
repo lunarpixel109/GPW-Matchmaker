@@ -8,7 +8,7 @@ public class LevelData : ScriptableObject
 {
 	public List<Property> properties;
 
-	public GameObject PlayerPrefab;
+	public List<GameObject> playerPrefabs;
 
     public bool lastDay;
     public bool winLose;

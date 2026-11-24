@@ -16,7 +16,7 @@ public class SteeringHelper : MonoBehaviour {
         float randX = Random.Range(-4f, 4f);
         float randZ = Random.Range(-4f, 4f);
         
-        Vector3 offset = new Vector3(randX, 1.0f, randZ);
+        Vector3 offset = new Vector3(randX, 0.5f, randZ);
         
         Vector3 targetPosition = floorSpace.transform.position + offset;
         

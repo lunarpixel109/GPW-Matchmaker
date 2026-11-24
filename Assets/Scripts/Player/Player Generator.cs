@@ -11,7 +11,7 @@ public class PlayerGenerator : MonoBehaviour
 	[SerializeField]
 	private LevelData levelData;
 
-	private GameObject playerPrefab;
+	private List<GameObject> playerPrefabs;
 
 	[SerializeField]
 	private Sprite playerSpriteDefalt;
@@ -44,7 +44,7 @@ public class PlayerGenerator : MonoBehaviour
 
         levelData = gameManager.GetCurrentLevelData();
 
-		playerPrefab = levelData.PlayerPrefab;
+		playerPrefabs = levelData.playerPrefabs;
 
 		timer = levelData.playerGenerationCooldown;
 
@@ -180,10 +180,11 @@ public class PlayerGenerator : MonoBehaviour
 	private void SetupPlayer()
 	{
         Vector3 randPos = Queue.transform.position;
-        randPos += new Vector3(Random.Range(-5, 5), 1, Random.Range(-5, 5));
-		
+        randPos += new Vector3(Random.Range(-5, 5), 0.5f, Random.Range(-5, 5));
 
-        newPlayer = Instantiate(playerPrefab, randPos, Quaternion.identity);
+        int rand = Random.Range(0, playerPrefabs.Count);
+        
+        newPlayer = Instantiate(playerPrefabs[rand], randPos, Quaternion.identity);
         newItemData = ScriptableObject.CreateInstance<ItemData>();
         newPropertyStore = ScriptableObject.CreateInstance<PropertyStore>();
 
@@ -192,7 +193,7 @@ public class PlayerGenerator : MonoBehaviour
         PlayerManager pm = newPlayer.GetComponent<PlayerManager>();
         pm.autoPlaceOnStart =  true;
 
-		newItemData.prefab3D = playerPrefab;
+		newItemData.prefab3D = playerPrefabs[rand];
 		newItemData.icon = playerSpriteDefalt;
 
 		//newItemData.colour = new Color(Random.Range(0,255), Random.Range(0, 255), Random.Range(0, 255));

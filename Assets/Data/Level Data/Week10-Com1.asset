@@ -16,7 +16,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f2c8a6f2759a47d02a4e5822dfa59e57, type: 2}
   - {fileID: 11400000, guid: 88c452bb4eeab8f348156e656841ced9, type: 2}
   - {fileID: 11400000, guid: 01945e66fddb2d03ba058c5a3a7e9fe6, type: 2}
-  PlayerPrefab: {fileID: 8623792663999120262, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
+  playerPrefabs:
+  - {fileID: 8623792663999120262, guid: d7940ada5859047f6ae0db767e7ea507, type: 3}
+  - {fileID: 8623792663999120262, guid: ad6e8396db15d4535a32792c531aaf7b, type: 3}
+  - {fileID: 8623792663999120262, guid: e9c534ad9ca654d13962102ab7370caa, type: 3}
+  - {fileID: 8623792663999120262, guid: 8c9a4ba9cf0c243d08c96eaa3a03b524, type: 3}
+  - {fileID: 8623792663999120262, guid: 873db198521f64dbcbc2f335f5bf86ef, type: 3}
+  - {fileID: 8623792663999120262, guid: 5b0bfaa4e2f5a40af89a694c682f1d8a, type: 3}
   lastDay: 1
   winLose: 0
   carryPreviousLevelScoreOver: 0
