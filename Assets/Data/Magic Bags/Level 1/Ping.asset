@@ -10,18 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 095fe71f53827cf47a43c70509682a47, type: 3}
-  m_Name: Region
+  m_Name: Ping
   m_EditorClassIdentifier: Assembly-CSharp::MagicBag
   numberValues: []
-  stringValues:
-  - Oceania
-  - Oceania
-  - North America
-  - South America
-  - Asia
-  - Africa
-  - Europe
-  - Europe
-  - Europe
-  - Africa
-  - Asia
+  stringValues: []
+  column: 0
+  isStringValues: 0
