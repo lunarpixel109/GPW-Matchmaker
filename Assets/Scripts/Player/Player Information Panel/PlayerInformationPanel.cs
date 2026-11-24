@@ -38,7 +38,7 @@ public class PlayerInformationPanel : MonoBehaviour
 
             previousPlayer = currentPlayer;
 
-            playerInformationHeader.GetComponentInChildren<TextMeshProUGUI>().text = currentPlayer.name;
+            playerInformationHeader.GetComponentInChildren<TextMeshProUGUI>().text = currentPlayer.data.displayName;
 
             for (int i = 0; i < currentPlayer.data.propertyStore.properties.Count; ++i) {
                 var propertyObject = Instantiate(playerPropertyPrefab, playerPropertyPanel.transform);
