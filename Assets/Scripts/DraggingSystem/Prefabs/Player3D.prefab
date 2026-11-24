@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 653582244439780474}
   - component: {fileID: 2818651942704389914}
   - component: {fileID: 2476167779589838463}
+  - component: {fileID: -4245050173441221793}
   - component: {fileID: -5675394661845084454}
   - component: {fileID: 2219396587529085714}
   - component: {fileID: 8047163186962485038}
@@ -289,9 +290,11 @@ MonoBehaviour:
   currentVelocity: {x: 0, y: 0, z: 0}
   steeringVelocity: {x: 0, y: 0, z: 0}
   queueFloor: {fileID: 0}
-  idleTimer: 10
+  idleTimer: 5
   settleTime: 0.3
   targetPosition: {x: 0, y: 0, z: 0}
+  giveUpTimer: 3
+  drawDebug: 0
 --- !u!114 &653582244439780474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Seek
   <Weight>k__BackingField: 1
+  drawDebug: 0
 --- !u!114 &2818651942704389914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Arrival
   <Weight>k__BackingField: 5
+  drawDebug: 0
   arrivalRadius: 20
 --- !u!114 &2476167779589838463
 MonoBehaviour:
@@ -332,9 +337,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAvoid
   <Weight>k__BackingField: 3
+  drawDebug: 0
   lookAhead: 3
   agentRadius: 0.5
   padding: 0.2
+  bubbleRadius: 1
+  bubbleStrength: 3
+  idleYield: 0.3
+--- !u!114 &-4245050173441221793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8623792663999120262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cfcbf6e19c698a49afe10a1348669ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoundsAvoid
+  <Weight>k__BackingField: 5
+  drawDebug: 0
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  feelerLength: 2.5
+  fanAngle: 90
+  feelerCount: 5
+  rayHeight: 0
+  minDistance: 0.6
+  pushStrength: 1.5
+  drawFeelers: 0
 --- !u!114 &-5675394661845084454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,11 +380,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48cbea9eca0fcee4a937c87230681b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPatience
-  maxPatience: 15
+  maxPatience: 30
   currentPatience: 0
   isWaiting: 1
-  notificationPrefab: {fileID: 6309180098329515368, guid: fb70bb9383419dc41ac3674b23fbb450, type: 3}
-  notificationCanvas: {fileID: 0}
+  notificationPanel: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!114 &2219396587529085714
 MonoBehaviour:

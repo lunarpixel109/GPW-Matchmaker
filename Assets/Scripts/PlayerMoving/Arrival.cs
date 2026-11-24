@@ -10,6 +10,8 @@ public class Arrival : SteeringBehaviour
     /// </summary>
     [SerializeField]
     protected float arrivalRadius = 200.0f;
+    
+    protected override Color DebugColor { get { return Color.red; } }
 
     public override Vector3 UpdateBehaviour(SteeringAgent steeringAgent)
     {

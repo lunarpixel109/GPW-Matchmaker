@@ -19,11 +19,16 @@ namespace PlayerMoveing {
 		/// <param name="steeringAgent">The agent this component is acting on</param>
 		/// <returns>The steeringVelocity should always be returned here</returns>
 		public abstract Vector3 UpdateBehaviour(SteeringAgent steeringAgent);
+		
+		[Header("Debug")]
+		[SerializeField] protected bool drawDebug = true;
 
-		protected virtual void Start()
+		protected virtual Color DebugColor => Color.white;
+
+		public virtual void DrawDebug(SteeringAgent agent)
 		{
-			// Annoyingly this is needed for the enabled bool to work in Unity. A MonoBehaviour must now have one of the following
-			// to activate this: Start(), Update(), FixedUpdate(), LateUpdate(), OnGUI(), OnDisable(), OnEnabled()
+			if (!drawDebug) return;
+			Debug.DrawRay(transform.position + Vector3.up * 0.1f, desiredVelocity, DebugColor);
 		}
     }
 }

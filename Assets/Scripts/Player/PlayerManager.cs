@@ -62,6 +62,11 @@ public class PlayerManager : MonoBehaviour
     /// Finds the floor below the item's resting position and starts the agent.
     public bool TryPlace() {
         Vector3 origin = transform.position + Vector3.up;
+        if (queueFloor != null) {
+            _steeringAgent.queueFloor = queueFloor;
+            _steeringAgent.enabled = true;
+            return true;
+        }
         if (!Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 100f, _floorMask)) {
             return false;
         }
@@ -78,6 +83,9 @@ public class PlayerManager : MonoBehaviour
     }
 
     private void Initialize() {
+        queueFloor = GameObject.FindGameObjectWithTag("Floor");
+        _steeringAgent.queueFloor = queueFloor;
+        
         var rend = GetComponent<Renderer>();
 
         //_playerPatience.notificationCanvas = canvas;
