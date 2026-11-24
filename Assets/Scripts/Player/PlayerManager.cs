@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     private PlayerPatience _playerPatience;
     private PatienceVisuals _patienceVisuals;
     private RoomItem _roomItem;
-    private TMP_Text _warningText;
+    private Image _warningText;
     private int _floorMask;
 
     public GameObject queueFloor;
@@ -17,7 +18,7 @@ public class PlayerManager : MonoBehaviour
         _steeringAgent = GetComponent<SteeringAgent>();
         _playerPatience = GetComponent<PlayerPatience>();
         _patienceVisuals = GetComponent<PatienceVisuals>();
-        _warningText = GetComponentInChildren<TMP_Text>();
+        _warningText = GetComponentInChildren<Image>();
         _floorMask = LayerMask.GetMask("Floor");
 
         _steeringAgent.enabled = false; // inert until placed
@@ -85,6 +86,6 @@ public class PlayerManager : MonoBehaviour
         _patienceVisuals.characterVisual = transform;
         _patienceVisuals.characterRenderer = rend;
         //_patienceVisuals.characterMaterial = rend.material;
-        _patienceVisuals.warningText = _warningText;
+        _patienceVisuals.warningImage = _warningText;
     }
 }

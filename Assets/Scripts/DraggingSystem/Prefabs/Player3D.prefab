@@ -350,8 +350,7 @@ MonoBehaviour:
   maxPatience: 15
   currentPatience: 0
   isWaiting: 1
-  notificationPrefab: {fileID: 6309180098329515368, guid: fb70bb9383419dc41ac3674b23fbb450, type: 3}
-  notificationCanvas: {fileID: 0}
+  notificationPanel: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!114 &2219396587529085714
 MonoBehaviour:
@@ -369,8 +368,10 @@ MonoBehaviour:
   characterVisual: {fileID: 0}
   characterRenderer: {fileID: 0}
   characterMaterial: {fileID: 2100000, guid: b82c2f2cd14028d40bb8e587fd9969fb, type: 2}
-  warningText: {fileID: 0}
-  warningPrefab: {fileID: 7592773170413887060, guid: c16bfc1d37db0f34c99c89eeea32a9e2, type: 3}
+  warningImage: {fileID: 0}
+  warningPrefab: {fileID: 8218632413009117788, guid: 17278d636cd45544481d533c4ba09dbe, type: 3}
+  amberWarning: {fileID: 21300000, guid: 9208b43f403dcfc45a96717a9d6503a7, type: 3}
+  redWarning: {fileID: 21300000, guid: effb0a62c0ea3fd47886bf16cde7b05a, type: 3}
   warningCanvas: {fileID: 0}
 --- !u!114 &8047163186962485038
 MonoBehaviour:

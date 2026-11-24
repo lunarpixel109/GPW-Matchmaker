@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using TMPro;
+using UnityEngine.UI;
 
 public class PatienceVisuals : MonoBehaviour
 {
@@ -11,8 +11,11 @@ public class PatienceVisuals : MonoBehaviour
     private Vector3 startPosition;
     public Material characterMaterial;
     private Color originalColour;
-    public TMP_Text warningText;
-    public TMP_Text warningPrefab;
+    public Image warningImage;
+    public Image warningPrefab;
+    public Sprite amberWarning;
+    public Sprite redWarning;
+
     public Canvas warningCanvas;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,18 +34,18 @@ public class PatienceVisuals : MonoBehaviour
         // Create a warning symbl for the player on the UI canvas
         if (warningPrefab != null && warningCanvas != null)
         {
-            warningText = Instantiate(warningPrefab, warningCanvas.transform);
+            warningImage = Instantiate(warningPrefab, warningCanvas.transform);
 
             // Make the warning symbol follow the character
-            PlayerWarnings playerWarning = warningText.gameObject.AddComponent<PlayerWarnings>();
+            PlayerWarnings playerWarning = warningImage.gameObject.AddComponent<PlayerWarnings>();
             playerWarning.target = transform;
             playerWarning.roomCamera = GameObject.Find("3D-room-camera").GetComponent<Camera>();
             playerWarning.roomWindow = GameObject.Find("3D-window").GetComponent<RectTransform>();
         }
 
-        if (warningText != null)
+        if (warningImage != null)
         {
-            warningText.gameObject.SetActive(false);
+            warningImage.gameObject.SetActive(false);
         }
     }
 
@@ -54,39 +57,37 @@ public class PatienceVisuals : MonoBehaviour
         //     characterVisual.localPosition = startPosition;
         //     return;
         // }
-        
+
         //originalColour = characterMaterial.color;
 
         float patiencePercent = patience.currentPatience / patience.maxPatience;
 
 
-        if (warningText != null)
+        if (warningImage != null)
         {
             if (patiencePercent <= 0.2f)
             {
                 // Critical warning: red
-                warningText.gameObject.SetActive(true);
+                warningImage.gameObject.SetActive(true);
 
-                warningText.color = Color.red;
-                warningText.alpha = 1f;
+                warningImage.sprite = redWarning;
 
                 float pulse = 1f + Mathf.Sin(Time.time * 6f) * 0.1f;
-                warningText.transform.localScale =
+                warningImage.transform.localScale =
                     Vector3.one * pulse;
             }
             else if (patiencePercent <= 0.45f)
             {
                 // Early warning: amber
-                warningText.gameObject.SetActive(true);
+                warningImage.gameObject.SetActive(true);
 
-                warningText.color = new Color(1f, 0.65f, 0f, 1f);
-                warningText.alpha = 1f;
+                warningImage.sprite = amberWarning;
 
-                warningText.transform.localScale = Vector3.one;
+                warningImage.transform.localScale = Vector3.one;
             }
             else
             {
-                warningText.gameObject.SetActive(false);
+                warningImage.gameObject.SetActive(false);
             }
         }
 
@@ -215,9 +216,9 @@ public class PatienceVisuals : MonoBehaviour
 
     void OnDestroy()
     {
-        if (warningText != null)
+        if (warningImage != null)
         {
-            Destroy(warningText.gameObject);
+            Destroy(warningImage.gameObject);
         }
     }
 }

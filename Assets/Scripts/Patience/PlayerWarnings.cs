@@ -6,7 +6,7 @@ public class PlayerWarnings : MonoBehaviour
     public RectTransform roomWindow;
     public Transform target;
     // Positions the UI slightly above the player
-    public Vector3 offset = new Vector3(0, 0.8f, 0);
+    public Vector3 offset = new Vector3(0, 1f, 0);
 
     private RectTransform rectTransform;
     private RectTransform canvasRect;
