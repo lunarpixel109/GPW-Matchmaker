@@ -61,6 +61,7 @@ public class SteeringAgent : MonoBehaviour {
             return;
         }
         CooperativeArbitration();
+        DrawDebug();
 
         if (!gameManager.pause)
         {
@@ -112,6 +113,33 @@ public class SteeringAgent : MonoBehaviour {
         if (currentVelocity.sqrMagnitude > 0.0f)
         {
             transform.forward = Vector3.Normalize(new Vector3(currentVelocity.x, 0.0f, currentVelocity.z));
+        }
+    }
+    
+    [Header("Debug")]
+    public bool drawDebug = true;
+
+    private void DrawDebug()
+    {
+        if (!drawDebug) return;
+
+        Vector3 pos = transform.position;
+
+        // Cyan: line to the current target
+        Debug.DrawLine(pos, targetPosition, Color.cyan);
+
+        // Green: current velocity (where the agent is actually moving)
+        Debug.DrawRay(pos, currentVelocity, Color.green);
+
+        // Red: total steering velocity this frame (sum of all weighted behaviours)
+        Debug.DrawRay(pos, steeringVelocity, Color.red);
+
+        // Per-behaviour desired velocity, each in its own colour, drawn slightly raised
+        // so they don't overlap the main lines
+        Vector3 lifted = pos + Vector3.up * 0.1f;
+        foreach (SteeringBehaviour b in steeringBehvaiours)
+        {
+            if (b.enabled) b.DrawDebug(this);
         }
     }
 }

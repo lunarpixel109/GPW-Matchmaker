@@ -8,6 +8,8 @@ public class PlayerAvoid : SteeringBehaviour {
     [SerializeField] private float padding = 0.2f;//extra personal space
 
     private static readonly List<PlayerAvoid> All = new List<PlayerAvoid>();
+    
+    protected override Color DebugColor { get { return Color.magenta; } }
 
     private void OnEnable()  { All.Add(this); }
     private void OnDisable() { All.Remove(this); }
