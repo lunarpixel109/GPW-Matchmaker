@@ -19,9 +19,10 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 8623792663999120262, guid: 0a1a8bc480af6477c995a1aa879060a9, type: 3}
   lastDay: 0
   winLose: 0
+  carryPreviousLevelScoreOver: 0
   StartingScore: 0
   winScore: 10
   currentScore: 13
   levelTime: 100000
-  playerGenerationCooldown: 0.5
+  playerGenerationCooldown: 4
   scene: {fileID: 102900000, guid: dc2f1e0690af13d45be4542b7bcc6200, type: 3}

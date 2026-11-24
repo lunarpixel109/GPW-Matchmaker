@@ -650,6 +650,11 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &290401729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6014812528505866978, guid: 028872e273f3dd148a5ee12d561b876f, type: 3}
+  m_PrefabInstance: {fileID: 357632672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &290917191
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,6 +890,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1818148096395731745, guid: 028872e273f3dd148a5ee12d561b876f, type: 3}
+      propertyPath: isScoring
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818148096395731745, guid: 028872e273f3dd148a5ee12d561b876f, type: 3}
+      propertyPath: overallScoreManager
+      value: 
+      objectReference: {fileID: 1597045660}
     - target: {fileID: 3615130685699215162, guid: 028872e273f3dd148a5ee12d561b876f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1570,6 +1583,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762559975}
   m_CullTransparentMesh: 1
+--- !u!1 &849932151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6014812528505866978, guid: 028872e273f3dd148a5ee12d561b876f, type: 3}
+  m_PrefabInstance: {fileID: 1945567947}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &871113841
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,7 +3194,7 @@ MonoBehaviour:
   - text: Ok
     colour: {r: 0.6901961, g: 0.5791917, b: 0.01568626, a: 1}
     lowerBound: 0.4
-    valueChange: 0
+    valueChange: 1
   - text: Good
     colour: {r: 0.44292888, g: 0.6901961, b: 0.01568626, a: 1}
     lowerBound: 0.5
@@ -3245,6 +3263,8 @@ MonoBehaviour:
   Queue: {fileID: 15580238}
   Lobbies:
   - {fileID: 471755199}
+  - {fileID: 849932151}
+  - {fileID: 290401729}
   indexes: 
   prefix: {fileID: 11400000, guid: ba70fbd99711e2d48835662371bddd7e, type: 2}
   firstName: {fileID: 11400000, guid: a0d238ef13fcb05478a87a3d7372ccf6, type: 2}
@@ -3657,6 +3677,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1818148096395731745, guid: 028872e273f3dd148a5ee12d561b876f, type: 3}
+      propertyPath: overallScoreManager
+      value: 
+      objectReference: {fileID: 1597045660}
     - target: {fileID: 3615130685699215162, guid: 028872e273f3dd148a5ee12d561b876f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

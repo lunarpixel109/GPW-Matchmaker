@@ -17,12 +17,32 @@ MonoBehaviour:
   - N
   - N
   - NE
-  - NE
   - S
-  - S
-  - NW
-  - NW
-  - NW
-  - S
-  - S
+  - N
+  - SE
+  - N
   - SW
+  - S
+  - N
+  - S
+  - SE
+  - NW
+  - NW
+  - S
+  - S
+  - E
+  - N
+  - NE
+  - E
+  - SE
+  - NW
+  - SE
+  - E
+  - NW
+  - E
+  - N
+  - E
+  - SE
+  - N
+  - NE
+  - N
