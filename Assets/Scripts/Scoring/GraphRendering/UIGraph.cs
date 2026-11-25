@@ -39,30 +39,30 @@ public class UIGraph : MaskableGraphic
     public override Texture mainTexture => s_WhiteTexture;
 
     /// <summary>Set raw data; it is normalised to the given ranges.</summary>
-    public void SetData(IList<Vector2> data, float minX, float maxX, float minY, float maxY) {
+    public void SetData(IList<Vector2> rawPoints, float minX, float maxX, float minY, float maxY) {
         points.Clear();
-        float w = Mathf.Max(maxX - minX, 0.0001f);
-        float h = Mathf.Max(maxY - minY, 0.0001f);
-        foreach (var p in data)
-            points.Add(new Vector2((p.x - minX) / w, (p.y - minY) / h));
+        float rangeWidth = Mathf.Max(maxX - minX, 0.0001f);
+        float rangeHeight = Mathf.Max(maxY - minY, 0.0001f);
+        foreach (var rawPoint in rawPoints)
+            points.Add(new Vector2((rawPoint.x - minX) / rangeWidth, (rawPoint.y - minY) / rangeHeight));
         SetVerticesDirty();
     }
 
     /// <summary>Set values spaced evenly on X (e.g. a time series).</summary>
     public void SetValues(IList<float> values, float minY, float maxY) {
         points.Clear();
-        float h = Mathf.Max(maxY - minY, 0.0001f);
-        int n = values.Count;
-        for (int i = 0; i < n; i++) {
-            float x = n > 1 ? (float)i / (n - 1) : 0f;
-            points.Add(new Vector2(x, (values[i] - minY) / h));
+        float rangeHeight = Mathf.Max(maxY - minY, 0.0001f);
+        int valueCount = values.Count;
+        for (int valueIndex = 0; valueIndex < valueCount; valueIndex++) {
+            float normalisedX = valueCount > 1 ? (float)valueIndex / (valueCount - 1) : 0f;
+            points.Add(new Vector2(normalisedX, (values[valueIndex] - minY) / rangeHeight));
         }
         SetVerticesDirty();
     }
 
     /// <summary>Set the goal using a real value and the same Y range as your data.</summary>
-    public void SetGoal(float value, float minY, float maxY) {
-        goalNormalised = Mathf.Clamp01((value - minY) / Mathf.Max(maxY - minY, 0.0001f));
+    public void SetGoal(float goalValue, float minY, float maxY) {
+        goalNormalised = Mathf.Clamp01((goalValue - minY) / Mathf.Max(maxY - minY, 0.0001f));
         showGoal = true;
         SetVerticesDirty();
     }
@@ -72,8 +72,8 @@ public class UIGraph : MaskableGraphic
         SetVerticesDirty();
     }
 
-    public void AddPoint(Vector2 normalised) {
-        points.Add(normalised);
+    public void AddPoint(Vector2 normalisedPoint) {
+        points.Add(normalisedPoint);
         SetVerticesDirty();
     }
 
@@ -84,74 +84,79 @@ public class UIGraph : MaskableGraphic
 
     protected override void OnPopulateMesh(VertexHelper vertexHelper) {
         vertexHelper.Clear();
-        Rect r = GetPixelAdjustedRect();
-        Debug.Log($"mesh: points {points.Count}, showGoal {showGoal}, goal {goalNormalised:F2}, rect {r}");
+        Rect graphRect = GetPixelAdjustedRect();
+        Debug.Log($"mesh: points {points.Count}, showGoal {showGoal}, goal {goalNormalised:F2}, rect {graphRect}");
 
         // Drawn first so the data renders on top of it.
         if (showGoal) {
-            float y = r.yMin + goalNormalised * r.height;
-            Vector2 a = new Vector2(r.xMin, y);
-            Vector2 b = new Vector2(r.xMax, y);
-            if (goalDashed) AddDashedLine(vertexHelper, a, b, goalThickness, goalColor);
-            else AddLineQuad(vertexHelper, a, b, goalThickness, goalColor);
+            float goalY = graphRect.yMin + goalNormalised * graphRect.height;
+            Vector2 goalStart = new Vector2(graphRect.xMin, goalY);
+            Vector2 goalEnd = new Vector2(graphRect.xMax, goalY);
+            if (goalDashed) AddDashedLine(vertexHelper, goalStart, goalEnd, goalThickness, goalColor);
+            else AddLineQuad(vertexHelper, goalStart, goalEnd, goalThickness, goalColor);
         }
 
         if (points.Count == 0) return;
 
-        var pos = new Vector2[points.Count];
-        for (int i = 0; i < points.Count; i++) {
-            pos[i] = new Vector2(
-                r.xMin + points[i].x * r.width,
-                r.yMin + points[i].y * r.height);
+        var pixelPositions = new Vector2[points.Count];
+        for (int pointIndex = 0; pointIndex < points.Count; pointIndex++) {
+            pixelPositions[pointIndex] = new Vector2(
+                graphRect.xMin + points[pointIndex].x * graphRect.width,
+                graphRect.yMin + points[pointIndex].y * graphRect.height);
         }
 
-        for (int i = 0; i < pos.Length - 1; i++) {
-            float dy = points[i + 1].y - points[i].y;
-            Color c = dy > 0.0001f ? upColor : (dy < -0.0001f ? downColor : flatColor);
-            AddLineQuad(vertexHelper, pos[i], pos[i + 1], lineThickness, c);
+        for (int segmentIndex = 0; segmentIndex < pixelPositions.Length - 1; segmentIndex++) {
+            float heightChange = points[segmentIndex + 1].y - points[segmentIndex].y;
+            Color segmentColor = heightChange > 0.0001f ? upColor : (heightChange < -0.0001f ? downColor : flatColor);
+            AddLineQuad(vertexHelper, pixelPositions[segmentIndex], pixelPositions[segmentIndex + 1], lineThickness, segmentColor);
         }
 
         if (drawPoints)
-            for (int i = 0; i < pos.Length; i++)
-                AddSquare(vertexHelper, pos[i], pointSize, pointColor);
+            for (int pointIndex = 0; pointIndex < pixelPositions.Length; pointIndex++)
+                AddSquare(vertexHelper, pixelPositions[pointIndex], pointSize, pointColor);
     }
 
-    private void AddDashedLine(VertexHelper vertexHelper, Vector2 a, Vector2 b, float thickness, Color c) {
-        Vector2 dir = b - a;
-        float len = dir.magnitude;
-        if (len < 0.01f) return;
-        dir /= len;
+    private void AddDashedLine(VertexHelper vertexHelper, Vector2 lineStart, Vector2 lineEnd, float thickness, Color lineColor) {
+        Vector2 direction = lineEnd - lineStart;
+        float totalLength = direction.magnitude;
+        if (totalLength < 0.01f) return;
+        direction /= totalLength;
 
-        float step = Mathf.Max(dashLength + dashGap, 0.01f);
-        for (float d = 0f; d < len; d += step) {
-            float end = Mathf.Min(d + dashLength, len);
-            AddLineQuad(vertexHelper, a + dir * d, a + dir * end, thickness, c);
+        float dashStep = Mathf.Max(dashLength + dashGap, 0.01f);
+        for (float distanceAlongLine = 0f; distanceAlongLine < totalLength; distanceAlongLine += dashStep) {
+            float dashEndDistance = Mathf.Min(distanceAlongLine + dashLength, totalLength);
+            AddLineQuad(vertexHelper, lineStart + direction * distanceAlongLine, lineStart + direction * dashEndDistance, thickness, lineColor);
         }
     }
 
-    private void AddLineQuad(VertexHelper vertexHelper, Vector2 a, Vector2 b, float thickness, Color c) {
-        Vector2 dir = b - a;
-        if (dir.sqrMagnitude < 0.0001f) return;
-        Vector2 normal = new Vector2(-dir.y, dir.x).normalized * (thickness * 0.5f);
+    /// <summary>
+    /// Draws a straight line between two points as a rectangle (two triangles),
+    /// extending half the thickness to each side of the line.
+    /// </summary>
+    private void AddLineQuad(VertexHelper vertexHelper, Vector2 lineStart, Vector2 lineEnd, float thickness, Color lineColor) {
+        Vector2 direction = lineEnd - lineStart;
+        if (direction.sqrMagnitude < 0.0001f) return;
+        Vector2 sideOffset = new Vector2(-direction.y, direction.x).normalized * (thickness * 0.5f);
 
-        int start = vertexHelper.currentVertCount;
-        vertexHelper.AddVert(a - normal, c, Vector2.zero);
-        vertexHelper.AddVert(a + normal, c, Vector2.zero);
-        vertexHelper.AddVert(b + normal, c, Vector2.zero);
-        vertexHelper.AddVert(b - normal, c, Vector2.zero);
-        vertexHelper.AddTriangle(start, start + 1, start + 2);
-        vertexHelper.AddTriangle(start, start + 2, start + 3);
+        int firstVertexIndex = vertexHelper.currentVertCount;
+        vertexHelper.AddVert(lineStart - sideOffset, lineColor, Vector2.zero);
+        vertexHelper.AddVert(lineStart + sideOffset, lineColor, Vector2.zero);
+        vertexHelper.AddVert(lineEnd + sideOffset, lineColor, Vector2.zero);
+        vertexHelper.AddVert(lineEnd - sideOffset, lineColor, Vector2.zero);
+        vertexHelper.AddTriangle(firstVertexIndex, firstVertexIndex + 1, firstVertexIndex + 2);
+        vertexHelper.AddTriangle(firstVertexIndex, firstVertexIndex + 2, firstVertexIndex + 3);
     }
 
-    private void AddSquare(VertexHelper vertexHelper, Vector2 center, float size, Color c) {
-        float h = size * 0.5f;
-        int start = vertexHelper.currentVertCount;
-        vertexHelper.AddVert(new Vector2(center.x - h, center.y - h), c, Vector2.zero);
-        vertexHelper.AddVert(new Vector2(center.x - h, center.y + h), c, Vector2.zero);
-        vertexHelper.AddVert(new Vector2(center.x + h, center.y + h), c, Vector2.zero);
-        vertexHelper.AddVert(new Vector2(center.x + h, center.y - h), c, Vector2.zero);
-        vertexHelper.AddTriangle(start, start + 1, start + 2);
-        vertexHelper.AddTriangle(start, start + 2, start + 3);
+    /// <summary>Draws a filled square marker centred on a point.</summary>
+    private void AddSquare(VertexHelper vertexHelper, Vector2 center, float squareSize, Color squareColor) {
+        float halfSize = squareSize * 0.5f;
+        int firstVertexIndex = vertexHelper.currentVertCount;
+        vertexHelper.AddVert(new Vector2(center.x - halfSize, center.y - halfSize), squareColor, Vector2.zero);
+        vertexHelper.AddVert(new Vector2(center.x - halfSize, center.y + halfSize), squareColor, Vector2.zero);
+        vertexHelper.AddVert(new Vector2(center.x + halfSize, center.y + halfSize), squareColor, Vector2.zero);
+        vertexHelper.AddVert(new Vector2(center.x + halfSize, center.y - halfSize), squareColor, Vector2.zero);
+        vertexHelper.AddTriangle(firstVertexIndex, firstVertexIndex + 1, firstVertexIndex + 2);
+        vertexHelper.AddTriangle(firstVertexIndex, firstVertexIndex + 2, firstVertexIndex + 3);
     }
 
 #if UNITY_EDITOR

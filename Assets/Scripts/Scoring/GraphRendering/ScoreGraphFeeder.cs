@@ -5,8 +5,7 @@ using UnityEngine;
 /// Feeds a UIGraph with a running score total. Call AddScore with a positive or
 /// negative amount and a new point is plotted. The Y range auto-fits the data.
 /// </summary>
-public class ScoreGraphFeeder : MonoBehaviour
-{
+public class ScoreGraphFeeder : MonoBehaviour {
     [SerializeField] private UIGraph graph;
     [Tooltip("Current score. Editing this at runtime plots a new point.")]
     [SerializeField] private float score;
@@ -21,84 +20,90 @@ public class ScoreGraphFeeder : MonoBehaviour
     [Tooltip("Off: one evenly spaced point per score event. On: points are spaced by real time.")]
     [SerializeField] private bool useTimeAxis;
 
-    private readonly List<float> totals = new List<float>();
-    private readonly List<float> times = new List<float>();
-    private float startTime;
+    private readonly List<float> scoreHistory = new List<float>();
+    private readonly List<float> timeHistory = new List<float>();
+    private float graphStartTime;
 
-    private void Start()
+    private void Start() 
     {
         ResetGraph();
     }
 
-    public void AddScore(float delta) {
-        score += delta;
+    /// <summary>Adds a positive or negative amount to the score and plots the new total.</summary>
+    public void AddScore(float scoreChange) {
+        score += scoreChange;
         Record();
     }
 
-    public void SetGoal(float value) {
-        goal = value;
+    /// <summary>Moves the goal line to a real score value.</summary>
+    public void SetGoal(float newGoal) {
+        goal = newGoal;
         Refresh();
     }
 
+    /// <summary>Resets the score to 0 and clears the graph, e.g. for a new round.</summary>
     public void ResetGraph() {
         score = 0f;
-        startTime = Time.time;
-        totals.Clear();
-        times.Clear();
+        graphStartTime = Time.time;
+        scoreHistory.Clear();
+        timeHistory.Clear();
         Record();
     }
 
+    /// <summary>Lets inspector edits (score, goal, toggles) take effect while the game is running.</summary>
     private void OnValidate() {
-        if (!Application.isPlaying || totals.Count == 0) return;
+        if (!Application.isPlaying || scoreHistory.Count == 0) return;
 
-        if (!Mathf.Approximately(score, totals[totals.Count - 1])) Record();
+        if (!Mathf.Approximately(score, scoreHistory[scoreHistory.Count - 1])) Record();
         else Refresh();
     }
 
+    /// <summary>Stores the current score as a new point, dropping the oldest once maxPoints is exceeded.</summary>
     private void Record() {
-        totals.Add(score);
-        times.Add(Time.time - startTime);
+        scoreHistory.Add(score);
+        timeHistory.Add(Time.time - graphStartTime);
 
-        if (totals.Count > maxPoints) {
-            totals.RemoveAt(0);
-            times.RemoveAt(0);
+        if (scoreHistory.Count > maxPoints) {
+            scoreHistory.RemoveAt(0);
+            timeHistory.RemoveAt(0);
         }
 
         Refresh();
     }
 
+    /// <summary>Fits the Y range to the history (and goal, if shown) and sends everything to the graph.</summary>
     private void Refresh() {
-        if (graph == null || totals.Count == 0) return;
+        if (graph == null || scoreHistory.Count == 0) return;
 
-        float min = totals[0];
-        float max = totals[0];
-        foreach (float v in totals) {
-            if (v < min) min = v;
-            if (v > max) max = v;
+        float lowestValue = scoreHistory[0];
+        float highestValue = scoreHistory[0];
+        foreach (float total in scoreHistory) {
+            if (total < lowestValue) lowestValue = total;
+            if (total > highestValue) highestValue = total;
         }
 
         if (showGoal) {
-            min = Mathf.Min(min, goal);
-            max = Mathf.Max(max, goal);
+            lowestValue = Mathf.Min(lowestValue, goal);
+            highestValue = Mathf.Max(highestValue, goal);
         }
 
-        float range = Mathf.Max(max - min, 1f);
-        float minY = min - range * padding;
-        float maxY = max + range * padding;
+        float valueRange = Mathf.Max(highestValue - lowestValue, 1f);
+        float minY = lowestValue - valueRange * padding;
+        float maxY = highestValue + valueRange * padding;
 
         if (useTimeAxis) {
-            var data = new List<Vector2>(totals.Count);
-            for (int i = 0; i < totals.Count; i++)
-                data.Add(new Vector2(times[i], totals[i]));
-            graph.SetData(data, times[0], times[times.Count - 1], minY, maxY);
+            var timePoints = new List<Vector2>(scoreHistory.Count);
+            for (int pointIndex = 0; pointIndex < scoreHistory.Count; pointIndex++)
+                timePoints.Add(new Vector2(timeHistory[pointIndex], scoreHistory[pointIndex]));
+            graph.SetData(timePoints, timeHistory[0], timeHistory[timeHistory.Count - 1], minY, maxY);
         }
         else {
-            graph.SetValues(totals, minY, maxY);
+            graph.SetValues(scoreHistory, minY, maxY);
         }
 
         if (showGoal) graph.SetGoal(goal, minY, maxY);
         else graph.HideGoal();
-        
+
         Debug.Log($"goal {goal}, range {minY} to {maxY}, normalised {(goal - minY) / (maxY - minY)}, showGoal {showGoal}");
     }
 }
