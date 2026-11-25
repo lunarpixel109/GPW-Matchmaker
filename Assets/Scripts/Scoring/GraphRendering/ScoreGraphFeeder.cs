@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 /// <summary>
 /// Feeds a UIGraph with a running score total. Call AddScore with a positive or
@@ -11,6 +12,12 @@ public class ScoreGraphFeeder : MonoBehaviour {
     [SerializeField] private float score;
     [SerializeField] private int maxPoints = 100;
     [SerializeField, Range(0f, 0.5f)] private float padding = 0.1f;
+    
+    [Header("Score")]
+    [SerializeField] private bool allowNegativeScore = true;
+    [SerializeField] private TMP_Text scoreLabel;
+    [Tooltip("{0} is the score. For example: Score: {0:N0}")]
+    [SerializeField] private string scoreLabelFormat = "{0:0.##}";
 
     [Header("Goal")]
     [SerializeField] private bool showGoal = true;
@@ -32,6 +39,7 @@ public class ScoreGraphFeeder : MonoBehaviour {
     /// <summary>Adds a positive or negative amount to the score and plots the new total.</summary>
     public void AddScore(float scoreChange) {
         score += scoreChange;
+        if (!allowNegativeScore) score = Mathf.Max(score, 0f);
         Record();
     }
 
@@ -53,6 +61,8 @@ public class ScoreGraphFeeder : MonoBehaviour {
     /// <summary>Lets inspector edits (score, goal, toggles) take effect while the game is running.</summary>
     private void OnValidate() {
         if (!Application.isPlaying || scoreHistory.Count == 0) return;
+        
+        if(!allowNegativeScore) score = Mathf.Max(score, 0f);
 
         if (!Mathf.Approximately(score, scoreHistory[scoreHistory.Count - 1])) Record();
         else Refresh();
@@ -73,6 +83,8 @@ public class ScoreGraphFeeder : MonoBehaviour {
 
     /// <summary>Fits the Y range to the history (and goal, if shown) and sends everything to the graph.</summary>
     private void Refresh() {
+        UpdateScoreLabel();
+        
         if (graph == null || scoreHistory.Count == 0) return;
 
         float lowestValue = scoreHistory[0];
@@ -105,5 +117,11 @@ public class ScoreGraphFeeder : MonoBehaviour {
         else graph.HideGoal();
 
         Debug.Log($"goal {goal}, range {minY} to {maxY}, normalised {(goal - minY) / (maxY - minY)}, showGoal {showGoal}");
+    }
+    
+    /// <summary>Shows the current score in the label, if one is assigned.</summary>
+    private void UpdateScoreLabel() {
+        if (scoreLabel == null) return;
+        scoreLabel.text = string.Format(scoreLabelFormat, score);
     }
 }

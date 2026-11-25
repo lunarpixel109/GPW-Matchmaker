@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// Scalable line graph for Unity UI. Add to a GameObject under a Canvas
@@ -18,6 +19,8 @@ public class UIGraph : MaskableGraphic
 
     [Header("Line")]
     [SerializeField] private float lineThickness = 4f;
+    [Tooltip("Width of the soft fade on each side of a line, in canvas units. 0 turns it off.")]
+    [SerializeField] private float edgeFeather = 1.5f;
     [SerializeField] private Color upColor = new Color(0.25f, 0.85f, 0.4f, 1f);
     [SerializeField] private Color downColor = new Color(0.95f, 0.3f, 0.3f, 1f);
     [SerializeField] private Color flatColor = new Color(0.8f, 0.8f, 0.8f, 1f);
@@ -35,6 +38,14 @@ public class UIGraph : MaskableGraphic
     [SerializeField] private bool goalDashed = true;
     [SerializeField] private float dashLength = 12f;
     [SerializeField] private float dashGap = 8f;
+    
+    [Header("Goal label")]
+    [Tooltip("Optional text child. Shown on the right edge, just above the goal line.")]
+    [SerializeField] private TMP_Text goalLabel;
+    [SerializeField] private string goalLabelFormat = "0.##";
+    [SerializeField] private Vector2 goalLabelOffset = new Vector2(-6f, 2f);
+
+    private float labelValue;
 
     public override Texture mainTexture => s_WhiteTexture;
 
@@ -63,12 +74,15 @@ public class UIGraph : MaskableGraphic
     /// <summary>Set the goal using a real value and the same Y range as your data.</summary>
     public void SetGoal(float goalValue, float minY, float maxY) {
         goalNormalised = Mathf.Clamp01((goalValue - minY) / Mathf.Max(maxY - minY, 0.0001f));
+        labelValue = goalValue;
         showGoal = true;
+        UpdateGoalLabel();
         SetVerticesDirty();
     }
 
     public void HideGoal() {
         showGoal = false;
+        UpdateGoalLabel();
         SetVerticesDirty();
     }
 
@@ -80,6 +94,32 @@ public class UIGraph : MaskableGraphic
     public void Clear() {
         points.Clear();
         SetVerticesDirty();
+    }
+    
+    protected override void OnEnable() {
+        base.OnEnable();
+        UpdateGoalLabel();
+    }
+
+    /// <summary>
+    /// Anchors the label to the right edge at the goal's height, so it follows the line
+    /// when the graph is resized. It flips below the line when the goal is near the top.
+    /// </summary>
+    private void UpdateGoalLabel() {
+        if (goalLabel == null) return;
+
+        goalLabel.enabled = showGoal;
+        goalLabel.raycastTarget = false;
+        goalLabel.text = labelValue.ToString(goalLabelFormat);
+
+        bool placeBelowLine = goalNormalised > 0.9f;
+        goalLabel.alignment = placeBelowLine ? TextAlignmentOptions.TopRight : TextAlignmentOptions.BottomRight;
+
+        RectTransform labelRect = goalLabel.rectTransform;
+        labelRect.anchorMin = new Vector2(1f, goalNormalised);
+        labelRect.anchorMax = new Vector2(1f, goalNormalised);
+        labelRect.pivot = new Vector2(1f, placeBelowLine ? 1f : 0f);
+        labelRect.anchoredPosition = new Vector2(goalLabelOffset.x, placeBelowLine ? -goalLabelOffset.y : goalLabelOffset.y);
     }
 
     protected override void OnPopulateMesh(VertexHelper vertexHelper) {
@@ -130,21 +170,37 @@ public class UIGraph : MaskableGraphic
     }
 
     /// <summary>
-    /// Draws a straight line between two points as a rectangle (two triangles),
-    /// extending half the thickness to each side of the line.
+    /// Draws a straight line between two points as a strip of three rectangles:
+    /// a solid core, plus a fringe on each side that fades to transparent to smooth the edges.
     /// </summary>
     private void AddLineQuad(VertexHelper vertexHelper, Vector2 lineStart, Vector2 lineEnd, float thickness, Color lineColor) {
         Vector2 direction = lineEnd - lineStart;
         if (direction.sqrMagnitude < 0.0001f) return;
-        Vector2 sideOffset = new Vector2(-direction.y, direction.x).normalized * (thickness * 0.5f);
+
+        Vector2 sideDirection = new Vector2(-direction.y, direction.x).normalized;
+        Vector2 coreOffset = sideDirection * (thickness * 0.5f);
+        Vector2 fringeOffset = sideDirection * (thickness * 0.5f + edgeFeather);
+        Color fringeColor = new Color(lineColor.r, lineColor.g, lineColor.b, 0f);
 
         int firstVertexIndex = vertexHelper.currentVertCount;
-        vertexHelper.AddVert(lineStart - sideOffset, lineColor, Vector2.zero);
-        vertexHelper.AddVert(lineStart + sideOffset, lineColor, Vector2.zero);
-        vertexHelper.AddVert(lineEnd + sideOffset, lineColor, Vector2.zero);
-        vertexHelper.AddVert(lineEnd - sideOffset, lineColor, Vector2.zero);
-        vertexHelper.AddTriangle(firstVertexIndex, firstVertexIndex + 1, firstVertexIndex + 2);
-        vertexHelper.AddTriangle(firstVertexIndex, firstVertexIndex + 2, firstVertexIndex + 3);
+
+        // Start of the line: left fringe, left core, right core, right fringe.
+        vertexHelper.AddVert(lineStart - fringeOffset, fringeColor, Vector2.zero);
+        vertexHelper.AddVert(lineStart - coreOffset, lineColor, Vector2.zero);
+        vertexHelper.AddVert(lineStart + coreOffset, lineColor, Vector2.zero);
+        vertexHelper.AddVert(lineStart + fringeOffset, fringeColor, Vector2.zero);
+
+        // End of the line, in the same order.
+        vertexHelper.AddVert(lineEnd - fringeOffset, fringeColor, Vector2.zero);
+        vertexHelper.AddVert(lineEnd - coreOffset, lineColor, Vector2.zero);
+        vertexHelper.AddVert(lineEnd + coreOffset, lineColor, Vector2.zero);
+        vertexHelper.AddVert(lineEnd + fringeOffset, fringeColor, Vector2.zero);
+
+        for (int stripIndex = 0; stripIndex < 3; stripIndex++) {
+            int stripStart = firstVertexIndex + stripIndex;
+            vertexHelper.AddTriangle(stripStart, stripStart + 1, stripStart + 5);
+            vertexHelper.AddTriangle(stripStart, stripStart + 5, stripStart + 4);
+        }
     }
 
     /// <summary>Draws a filled square marker centred on a point.</summary>
@@ -162,6 +218,7 @@ public class UIGraph : MaskableGraphic
 #if UNITY_EDITOR
     protected override void OnValidate() {
         base.OnValidate();
+        UpdateGoalLabel();
         SetVerticesDirty();
     }
 #endif
