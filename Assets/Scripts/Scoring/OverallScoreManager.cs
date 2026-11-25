@@ -22,6 +22,8 @@ namespace Scoring {
 
         public int currentCCU = 10000;
         public GameManager gameManager;
+        
+        public ScoreGraphFeeder scoreGraphFeeder;
 
         private void Start() {
 
@@ -36,6 +38,8 @@ namespace Scoring {
 
             forceScoring.Enable();
             forceScoring.performed += _ => Score();
+            
+            scoreGraphFeeder = GetComponent<ScoreGraphFeeder>();
         }
 
 
@@ -49,7 +53,7 @@ namespace Scoring {
             // 3. Show custom score change stamp
             StartCoroutine(ShowChangeInScore(ccuChange, lobby));
 
-
+            scoreGraphFeeder.AddScore(ccuChange.valueChange);
         }
 
         private IEnumerator ShowChangeInScore(FinalScoreLevel level, Transform lobby) {
