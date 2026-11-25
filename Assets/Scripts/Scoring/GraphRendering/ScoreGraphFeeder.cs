@@ -30,20 +30,17 @@ public class ScoreGraphFeeder : MonoBehaviour
         ResetGraph();
     }
 
-    public void AddScore(float delta)
-    {
+    public void AddScore(float delta) {
         score += delta;
         Record();
     }
 
-    public void SetGoal(float value)
-    {
+    public void SetGoal(float value) {
         goal = value;
         Refresh();
     }
 
-    public void ResetGraph()
-    {
+    public void ResetGraph() {
         score = 0f;
         startTime = Time.time;
         totals.Clear();
@@ -51,21 +48,18 @@ public class ScoreGraphFeeder : MonoBehaviour
         Record();
     }
 
-    private void OnValidate()
-    {
+    private void OnValidate() {
         if (!Application.isPlaying || totals.Count == 0) return;
 
         if (!Mathf.Approximately(score, totals[totals.Count - 1])) Record();
         else Refresh();
     }
 
-    private void Record()
-    {
+    private void Record() {
         totals.Add(score);
         times.Add(Time.time - startTime);
 
-        if (totals.Count > maxPoints)
-        {
+        if (totals.Count > maxPoints) {
             totals.RemoveAt(0);
             times.RemoveAt(0);
         }
@@ -73,20 +67,17 @@ public class ScoreGraphFeeder : MonoBehaviour
         Refresh();
     }
 
-    private void Refresh()
-    {
+    private void Refresh() {
         if (graph == null || totals.Count == 0) return;
 
         float min = totals[0];
         float max = totals[0];
-        foreach (float v in totals)
-        {
+        foreach (float v in totals) {
             if (v < min) min = v;
             if (v > max) max = v;
         }
 
-        if (showGoal)
-        {
+        if (showGoal) {
             min = Mathf.Min(min, goal);
             max = Mathf.Max(max, goal);
         }
@@ -95,15 +86,13 @@ public class ScoreGraphFeeder : MonoBehaviour
         float minY = min - range * padding;
         float maxY = max + range * padding;
 
-        if (useTimeAxis)
-        {
+        if (useTimeAxis) {
             var data = new List<Vector2>(totals.Count);
             for (int i = 0; i < totals.Count; i++)
                 data.Add(new Vector2(times[i], totals[i]));
             graph.SetData(data, times[0], times[times.Count - 1], minY, maxY);
         }
-        else
-        {
+        else {
             graph.SetValues(totals, minY, maxY);
         }
 
